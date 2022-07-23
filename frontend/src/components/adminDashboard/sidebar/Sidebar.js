@@ -3,6 +3,10 @@ import './Sidebar.css';
 import logo from '../assets/logo.png';
 
 const Sidebar = ({ sidebarOpen, closeSidebar }) => {
+  const handleClick = (dest) => {
+    window.location.href = window.location.origin + '/admin/' + dest;
+  };
+
   return (
     <div className={sidebarOpen ? 'sidebar_responsive' : ''} id="sidebar">
       <div className="sidebar__title">
@@ -21,24 +25,26 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
       <div className="sidebar__menu">
         <div className="sidebar__link active_menu_link">
           <i className="fa fa-home" />
-          <a href="#">Dashboard</a>
+          <a style={{ fontSize: '16px' }} onClick={(e) => handleClick('')}>
+            Dashboard
+          </a>
         </div>
         <h2>Details</h2>
         <div className="sidebar__link">
           <i className="fa fa-user-secret" aria-hidden="true" />
-          <a href="#">Patient</a>
+          <a onClick={(e) => handleClick('patient')}>Patient</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-building-o" />
-          <a href="#">Doctor</a>
+          <a onClick={(e) => handleClick('doctor')}>Doctor</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-wrench" />
-          <a href="#">Appointments</a>
+          <a onClick={(e) => handleClick('appointment')}>Appointments</a>
         </div>
         <div className="sidebar__link">
           <i className="fa fa-archive" />
-          <a href="#">Bills</a>
+          <a onClick={(e) => handleClick('bill')}>Bills</a>
         </div>
         {/* <h2>LEAVE</h2>
         <div className="sidebar__link">

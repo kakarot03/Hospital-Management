@@ -1,6 +1,5 @@
 import './Main.css';
 import hello from '../assets/hello.svg';
-import Chart from '../chart/Chart';
 
 const Main = () => {
   return (
@@ -73,7 +72,6 @@ const Main = () => {
               </div>
               <i className="fa fa-usd" aria-hidden="true" />
             </div>
-            <Chart />
           </div>
 
           <div className="charts__right">
