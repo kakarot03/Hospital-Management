@@ -20,9 +20,7 @@ router.get('/getAllPatients', async (req, res) => {
       res.status(200).json({
         status: 'success',
         results: result.rows.length,
-        data: {
-          patients: result.rows,
-        },
+        patients: result.rows,
       });
     });
   } catch (err) {

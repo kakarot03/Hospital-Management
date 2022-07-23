@@ -1,74 +1,53 @@
-import React from 'react';
-import './patientDetails.css';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+import './PatientDetails.css';
+import PatientRoute from '../../../Api/PatientRoute';
 
 const PatientDetails = () => {
+  const [patientList, setPatientList] = useState([]);
+
+  const getPatients = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    try {
+      const result = await PatientRoute.get('/getAllPatients');
+      const jsonData = await result.data.patients;
+      setPatientList(jsonData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getPatients();
+  }, []);
+
   return (
     <div className="PatientDetails">
-      <div class="containerPatient">
+      <div className="containerPatient">
         <h2>Patient List</h2>
-        <ul class="responsive-table">
-          <li class="table-header">
-            <div class="col col-1">Patient Id</div>
-            <div class="col col-2">Patient Name</div>
-            <div class="col col-3">Patient Age</div>
-            <div class="col col-4">Patient Mobile</div>
+        <ul className="responsive-table">
+          <li className="table-header">
+            <div className="col col-1">Patient Id</div>
+            <div className="col col-2">Patient Name</div>
+            <div className="col col-3">Patient Age</div>
+            <div className="col col-4">Patient Mobile</div>
           </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42235
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Doe
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $350
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42442
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              Jennifer Smith
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $220
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42257
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Smith
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $341
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
-          <li class="table-row">
-            <div class="col col-1" data-label="Job Id">
-              42311
-            </div>
-            <div class="col col-2" data-label="Customer Name">
-              John Carpenter
-            </div>
-            <div class="col col-3" data-label="Amount">
-              $115
-            </div>
-            <div class="col col-4" data-label="Payment Status">
-              Pending
-            </div>
-          </li>
+          {patientList.map((patient) => (
+            <li className="table-row" key={patient.id}>
+              <div className="col col-1" data-label="Patient Id">
+                {patient.id}
+              </div>
+              <div className="col col-2" data-label="Patient Name">
+                {patient.name}
+              </div>
+              <div className="col col-3" data-label="Patient Age">
+                {patient.age}
+              </div>
+              <div className="col col-4" data-label="Patient Address">
+                {patient.address}
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
