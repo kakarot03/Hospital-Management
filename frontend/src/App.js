@@ -14,6 +14,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/patient" element={<Patient />} />
         </Routes>
@@ -23,15 +24,3 @@ const App = () => {
 };
 
 export default App;
-
-// <Router>
-//   <div className="pages">
-//     <Routes>
-//       <Route exact path="/" element={<Home />} />
-//       <Route exact path="/login" element={<Login />} />
-//       <Route exact path="/admin" element={<Admin />} />
-//       <Route exact path="/doctor" element={<Doctor />} />
-//       <Route exact path="/patient" element={<Patient />} />
-//     </Routes>
-//   </div>
-// </Router>;
