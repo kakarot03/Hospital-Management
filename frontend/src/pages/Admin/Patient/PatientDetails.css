@@ -92,8 +92,20 @@ body {
     margin-left: 1rem;
 }
 
+.PatientDetails .updateBtn:hover {
+    color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
 .PatientDetails .deleteBtn {
     background-color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+.PatientDetails .deleteBtn:hover {
+    color: #b01a1a;
     border: none;
     margin-left: 5.5rem;
 }

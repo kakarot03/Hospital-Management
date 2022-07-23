@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './Admin.css';
 import Main from '../../components/adminDashboard/main/Main';
 import PatientDetails from './Patient/PatientDetails';
@@ -20,8 +20,6 @@ const Admin = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/patient" element={<PatientDetails />} />
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/appointment" element={<Patient />} /> */}
       </Routes>
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>
