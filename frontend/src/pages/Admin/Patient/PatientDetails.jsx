@@ -21,6 +21,22 @@ const PatientDetails = () => {
     getPatients();
   }, []);
 
+  const handleDelete = async (e, id) => {
+    e.stopPropagation();
+    try {
+      await PatientRoute.delete(`/deletePatient/${id}`);
+      setPatientList(
+        patientList.filter((patient) => {
+          return patient.id !== id;
+        })
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUpdate = async (e, id) => {};
+
   return (
     <div className="PatientDetails">
       <div className="containerPatient">
@@ -46,6 +62,22 @@ const PatientDetails = () => {
               <div className="col col-4" data-label="Patient Address">
                 {patient.address}
               </div>
+              <td>
+                <button
+                  onClick={(e) => handleUpdate(e, patient.id)}
+                  className="updateBtn"
+                >
+                  Update
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={(e) => handleDelete(e, patient.id)}
+                  className="deleteBtn"
+                >
+                  Delete
+                </button>
+              </td>
             </li>
           ))}
         </ul>
