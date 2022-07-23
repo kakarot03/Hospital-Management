@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './Home.css';
 import homeImg from '../../components/image/homeimg.svg';
 import aboutImg from '../../components/image/about-img.svg';
@@ -15,8 +15,44 @@ import doc6 from '../../components/image/doc-6.jpg';
 import pic1 from '../../components/image/pic-1.png';
 import pic2 from '../../components/image/pic-2.png';
 import pic3 from '../../components/image/pic-3.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  Animator,
+  batch,
+  Fade,
+  MoveOut,
+  ScrollContainer,
+  ScrollPage,
+  Sticky,
+} from 'react-scroll-motion';
+import emailjs from '@emailjs/browser';
+
+const element = <FontAwesomeIcon icon={faSquareCaretRight} size="xl" />;
 
 const Home = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        'service_5o6n3vc',
+        'template_4rwifzj',
+        form.current,
+        'jEj8mNESKKy-QqdOr'
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    document.getElementById('contactForm').reset();
+  };
+
   return (
     <div className="Home">
       <section className="home" id="home">
@@ -30,12 +66,20 @@ const Home = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sed
             autem vero? Magnam, est laboriosam!
           </p>
-          <a href="#" className="btn">
+          <a href="#contactForm" className="btn">
             {' '}
-            contact us <span className="fas fa-chevron-right" />
+            contact us
           </a>
         </div>
       </section>
+
+      {/* <ScrollContainer>
+        <ScrollPage page={0}>
+          <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
+            <h2>Let't me show you scroll animation 😀</h2>
+          </Animator>
+        </ScrollPage>
+      </ScrollContainer> */}
 
       <section className="icons-container">
         <div className="icons">
@@ -79,7 +123,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
 
@@ -92,7 +136,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
 
@@ -105,7 +149,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
 
@@ -118,7 +162,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
 
@@ -131,7 +175,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
 
@@ -144,16 +188,18 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
         </div>
       </section>
 
       <section className="about" id="about">
-        <h1 className="heading">
-          {' '}
-          <span>about</span> us{' '}
+        <h1
+          className="heading"
+          style={{ marginTop: '7rem', marginBottom: '0rem' }}
+        >
+          <span>about</span> us
         </h1>
 
         <div className="row">
@@ -176,7 +222,7 @@ const Home = () => {
             </p>
             <a href="#" className="btn">
               {' '}
-              learn more <span className="fas fa-chevron-right" />{' '}
+              learn more
             </a>
           </div>
         </div>
@@ -264,9 +310,8 @@ const Home = () => {
       </section>
 
       <section className="book" id="book">
-        <h1 className="heading">
-          {' '}
-          <span>book</span> now{' '}
+        <h1 className="heading" style={{ marginTop: '30px' }}>
+          <span>Contact</span> Us{' '}
         </h1>
 
         <div className="row">
@@ -274,13 +319,37 @@ const Home = () => {
             <img src={bookImg} alt="" />
           </div>
 
-          <form action="">
-            <h3>book appointment</h3>
-            <input type="text" placeholder="your name" className="box" />
-            <input type="number" placeholder="your number" className="box" />
-            <input type="email" placeholder="your email" className="box" />
-            <input type="date" className="box" />
-            <input type="submit" value="book now" className="btn" />
+          <form action="" id="contactForm" ref={form} onSubmit={sendEmail}>
+            <h3 style={{ marginBottom: '10px' }}>Contact Form</h3>
+            <input
+              type="text"
+              placeholder="Your name"
+              className="box"
+              name="to_name"
+              required
+            />
+            <input
+              type="mobile"
+              placeholder="Your number"
+              className="box"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Your email"
+              className="box"
+              name="reply_to"
+              required
+            />
+            <textarea
+              className="box"
+              placeholder="Your review"
+              rows={3}
+              required
+            />
+            <button style={{ margin: '20px' }} className="btn">
+              Send Email
+            </button>
           </form>
         </div>
       </section>
@@ -349,12 +418,11 @@ const Home = () => {
       </section>
 
       <section className="blogs" id="blogs">
-        <h1 className="heading">
-          {' '}
-          our <span>blogs</span>{' '}
+        <h1 className="heading" style={{ margin: '6rem 0rem', height: '10vh' }}>
+          our <span>blogs</span>
         </h1>
 
-        <div className="box-container">
+        <div className="box-container" style={{ marginBottom: '5rem' }}>
           <div className="box">
             <div className="image">
               <img src={blog1} alt="" />
@@ -377,7 +445,7 @@ const Home = () => {
               </p>
               <a href="#" className="btn">
                 {' '}
-                learn more <span className="fas fa-chevron-right" />{' '}
+                learn more
               </a>
             </div>
           </div>
@@ -404,7 +472,7 @@ const Home = () => {
               </p>
               <a href="#" className="btn">
                 {' '}
-                learn more <span className="fas fa-chevron-right" />{' '}
+                learn more
               </a>
             </div>
           </div>
@@ -431,7 +499,7 @@ const Home = () => {
               </p>
               <a href="#" className="btn">
                 {' '}
-                learn more <span className="fas fa-chevron-right" />{' '}
+                learn more
               </a>
             </div>
           </div>
@@ -549,9 +617,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="credit">
-          {' '}
-          created by <span>mr. web designer</span> | all rights reserved{' '}
+        <div className="credit" style={{ marginBottom: '-4rem' }}>
+          created by <span>mr. srivarshan</span> | all rights reserved{' '}
         </div>
       </section>
     </div>

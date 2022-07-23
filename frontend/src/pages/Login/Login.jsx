@@ -69,7 +69,7 @@ const Login = () => {
           Registered Successfully, Signin Now!
         </h4>
       )}
-      <h2>Sign in/up Form</h2>
+      <h2> Sign in/up Form</h2>
       <div className={className} id="container">
         <div className="form-container sign-up-container" id="form-container">
           <form action="#">
