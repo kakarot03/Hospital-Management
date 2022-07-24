@@ -31,6 +31,21 @@ router.get('/getAllPatients', async (req, res) => {
   }
 });
 
+router.get('/getPatient/:id', async (req, res) => {
+  try {
+    const patient = await db.query('select * from patient where id = $1', [
+      req.params.id,
+    ]);
+
+    res.status(200).json({
+      status: 'success',
+      patient: patient.rows,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // Add Patient
 router.post('/addPatient', async (req, res) => {
   try {

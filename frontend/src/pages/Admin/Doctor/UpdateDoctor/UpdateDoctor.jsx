@@ -13,22 +13,21 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const UpdatePatient = ({ patientId }) => {
+const UpdateDoctor = ({ doctorId }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
-
   return (
     <>
       <Button onClick={openModal}>Update</Button>
       <Modal
         showModal={showModal}
         setShowModal={setShowModal}
-        props={patientId}
+        props={doctorId}
       />
     </>
   );
 };
 
-export default UpdatePatient;
+export default UpdateDoctor;

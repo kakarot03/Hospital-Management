@@ -1,9 +1,9 @@
-body {
+body .Modal {
     background-color: #f2f2f2 !important;
     font-family: 'Open Sans', Helvetica !important;
 }
 
-.Patient form {
+.Modal form {
     position: absolute;
     text-align: center;
     left: 50%;
@@ -12,14 +12,14 @@ body {
     padding: 10px;
 }
 
-.Patient label {
+.Modal label {
     display: block;
     letter-spacing: 4px;
     padding-top: 5px;
     text-align: center;
 }
 
-.Patient label .label-text {
+.Modal label .label-text {
     color: #9B9B9B;
     cursor: text;
     font-size: 17px;
@@ -29,7 +29,7 @@ body {
     transform: translateY(-34px);
 }
 
-.Patient label input {
+.Modal label input {
     background-color: transparent;
     border: 0;
     border-bottom: 2px solid #4A4A4A;
@@ -43,28 +43,28 @@ body {
     width: 200px;
 }
 
-.Patient label input:focus {
+.Modal label input:focus {
     max-width: 100%;
     width: 400px;
 }
 
-.Patient label input:focus+.label-text {
+.Modal label input:focus+.label-text {
     color: #ccc1c1;
     font-size: 13px;
     transform: translateY(-64px);
 }
 
-.Patient label input:valid+.label-text {
+.Modal label input:valid+.label-text {
     font-size: 13px;
     transform: translateY(-65px);
 }
 
-.Patient button {
+.Modal button {
     background-color: #333333;
     border: 2px solid white;
     border-radius: 27px;
     color: white;
-    font-size: 16px;
+    font-size: 12px;
     margin-top: 25px;
     padding: 10px 20px;
     text-transform: uppercase;
@@ -75,13 +75,13 @@ body {
     transition: 0.2s all;
 }
 
-.Patient button:hover {
+.Modal button:hover {
     background-color: rgb(241, 241, 241);
     color: #333333;
     outline: 0;
 }
 
-.Patient button:active {
+.Modal button:active {
     transform: scale(0.95);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }

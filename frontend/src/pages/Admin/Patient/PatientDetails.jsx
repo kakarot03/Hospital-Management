@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './PatientDetails.css';
 import PatientRoute from '../../../Api/PatientRoute';
 import UpdatePatient from './UpdatePatient/UpdatePatient';
 
 const PatientDetails = () => {
   const [patientList, setPatientList] = useState([]);
-  let navigate = useNavigate();
 
   const getPatients = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
@@ -38,11 +36,6 @@ const PatientDetails = () => {
     }
   };
 
-  const handleUpdate = (e, id) => {
-    e.stopPropagation();
-    navigate(`updatePatient/${id}`);
-  };
-
   return (
     <div className="PatientDetails">
       <div className="containerPatient">
@@ -65,11 +58,11 @@ const PatientDetails = () => {
               <div className="col col-3" data-label="Patient Age">
                 {patient.age}
               </div>
-              <div className="col col-4" data-label="Patient Address">
-                {patient.address}
+              <div className="col col-4" data-label="Patient Mobile">
+                {patient.mobile}
               </div>
               <td>
-                <UpdatePatient />
+                <UpdatePatient patientId={patient.id} />
               </td>
               <td>
                 <button

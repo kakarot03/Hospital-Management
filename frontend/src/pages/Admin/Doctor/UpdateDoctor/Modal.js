@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
-import PatientRoute from '../../../../Api/PatientRoute';
+import DoctorRoute from '../../../../Api/DoctorRoute';
 import styled from 'styled-components';
 import './Modal.css';
 
@@ -60,21 +60,20 @@ const CloseModalButton = styled.button`
 
 export const Modal = ({ showModal, setShowModal, props }) => {
   const modalRef = useRef();
-  const [patientName, setPatientName] = useState('');
-  const [patientAge, setPatientAge] = useState('');
-  const [patientMobile, setPatientMobile] = useState('123');
-  const [patientAddress, setPatientAddress] = useState('abc');
+  const [doctorName, setDoctorName] = useState('');
+  const [doctorAge, setDoctorAge] = useState('');
+  const [doctorMobile, setDoctorMobile] = useState('');
+  const [doctorDeptId, setDoctorDeptId] = useState('');
 
-  const getPatient = async (e) => {
+  const getDoctor = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
     try {
-      const result = await PatientRoute.get(`/getPatient/${props}`);
-      const patient = await result.data.patient[0];
-      // console.log(patient);
-      setPatientName(patient.name);
-      setPatientAge(patient.age);
-      setPatientMobile(patient.mobile);
-      setPatientAddress(patient.address);
+      const result = await DoctorRoute.get(`/getDoctor/${props}`);
+      const doctor = await result.data.doctor[0];
+      setDoctorName(doctor.name);
+      setDoctorAge(doctor.age);
+      setDoctorMobile(doctor.mobile);
+      setDoctorDeptId(doctor.department_id);
     } catch (err) {
       console.log(err);
     }
@@ -83,20 +82,18 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   const handleFormSubmission = async (e) => {
     // e.preventDefault();
     try {
-      const response = await PatientRoute.put(`/updatePatient/${props}`, {
-        name: patientName,
-        age: patientAge,
-        mobile: patientMobile,
-        address: patientAddress,
+      const response = await DoctorRoute.put(`/updateDoctor/${props}`, {
+        name: doctorName,
+        age: doctorAge,
+        mobile: doctorMobile,
       });
       console.log(response.data);
     } catch (err) {
       console.log(err.message);
     }
-    setPatientName('');
-    setPatientAge('');
-    setPatientMobile('');
-    setPatientAddress('');
+    setDoctorName('');
+    setDoctorAge('');
+    setDoctorMobile('');
     showModal = !showModal;
   };
 
@@ -125,7 +122,7 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   );
 
   useEffect(() => {
-    getPatient();
+    getDoctor();
   }, []);
 
   useEffect(() => {
@@ -145,8 +142,8 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        value={patientName}
-                        onChange={(e) => setPatientName(e.target.value)}
+                        value={doctorName}
+                        onChange={(e) => setDoctorName(e.target.value)}
                         required
                       />
                       <div className="label-text">Name</div>
@@ -154,8 +151,8 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        value={patientAge}
-                        onChange={(e) => setPatientAge(e.target.value)}
+                        value={doctorAge}
+                        onChange={(e) => setDoctorAge(e.target.value)}
                         required
                       />
                       <div className="label-text">Age</div>
@@ -163,20 +160,15 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        value={patientMobile}
-                        onChange={(e) => setPatientMobile(e.target.value)}
+                        value={doctorMobile}
+                        onChange={(e) => setDoctorMobile(e.target.value)}
                         required
                       />
                       <div className="label-text">Mobile</div>
                     </label>
                     <label>
-                      <input
-                        type="text"
-                        value={patientAddress}
-                        onChange={(e) => setPatientAddress(e.target.value)}
-                        required
-                      />
-                      <div className="label-text">Address</div>
+                      <input type="text" value={doctorDeptId} required />
+                      <div className="label-text">Department Id</div>
                     </label>
                     <button type="sumbit" onClick={handleFormSubmission}>
                       Update

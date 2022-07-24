@@ -21,6 +21,20 @@ router.get('/getAllDoctors', async (req, res) => {
   }
 });
 
+router.get('/getDoctor/:id', async (req, res) => {
+  try {
+    const doctor = await db.query('select * from doctor where id = $1', [
+      req.params.id,
+    ]);
+    res.status(200).json({
+      status: 'success',
+      doctor: doctor.rows,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 // Add Doctor
 router.post('/addDoctor', async (req, res) => {
   try {
@@ -44,10 +58,10 @@ router.post('/addDoctor', async (req, res) => {
 // Update Doctor
 router.put('/updateDoctor/:id', async (req, res) => {
   try {
-    const { name, age, mobile, department } = req.body;
+    const { name, age, mobile } = req.body;
     await db.query(
-      'UPDATE doctor SET name = $1, age = $2, mobile = $3, department = $4 WHERE id = $5 returning *',
-      [name, age, mobile, department, req.params.id]
+      'UPDATE doctor SET name = $1, age = $2, mobile = $3 WHERE id = $4 returning *',
+      [name, age, mobile, req.params.id]
     );
     res.status(202).json({
       status: 'success',
