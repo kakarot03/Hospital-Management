@@ -22,7 +22,7 @@ const Patient = () => {
     try {
       for (var i = 0; i < patientList.length; i++) {
         if (patientList[i].id == inputId) {
-          navigate(`/patient/${inputId}`);
+          navigate(`/patientHome/${inputId}`);
           flag = false;
           return;
         }

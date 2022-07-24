@@ -1,0 +1,156 @@
+html .PatientHome {
+    box-sizing: border-box !important;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+*,
+*:before,
+*:after .PatientHome {
+    box-sizing: inherit !important;
+}
+
+.PatientHome .backgroundPatientHome {
+    padding: 0 25px 25px !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+.PatientHome .backgroundPatientHome::after {
+    content: '' !important;
+    background: #60a9ff !important;
+    background: -moz-linear-gradient(top, #60a9ff 0%, #4394f4 100%) !important;
+    background: -webkit-linear-gradient(top, #60a9ff 0%, #4394f4 100%) !important;
+    background: linear-gradient(to bottom, #60a9ff 0%, #4394f4 100%) !important;
+    filter: progid:DXImageTransform .Microsoft .gradient(startColorstr='#60a9ff', endColorstr='#4394f4', GradientType=0) !important;
+    height: 400px !important;
+    left: 0 !important;
+    position: absolute !important;
+    top: 0 !important;
+    width: 100% !important;
+    z-index: 1 !important;
+}
+
+@media (min-width: 900px) {
+    .PatientHome .backgroundPatientHome {
+        padding: 0 0 25px !important;
+    }
+}
+
+.PatientHome .containerPatientHome {
+    margin: 0 auto !important;
+    padding: 50px 0 0 !important;
+    max-width: 960px !important;
+    width: 100% !important;
+}
+
+.PatientHome .panel {
+    margin-top: 10rem;
+    background-color: rgb(250, 250, 250) !important;
+    height: 500px;
+    border-radius: 10px !important;
+    padding: 15px 25px !important;
+    position: relative !important;
+    width: 100% !important;
+    z-index: 10 !important;
+}
+
+.PatientHome .pricing-table {
+    box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.PatientHome .08), 0px 20px 31px 3px rgba(0, 0, 0, 0.PatientHome .09), 0px 8px 20px 7px rgba(0, 0, 0, 0.PatientHome .02) !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+@media (min-width: 900px) {
+    .PatientHome .pricing-table {
+        flex-direction: row !important;
+    }
+}
+
+.PatientHome .pricing-table * {
+    text-align: center !important;
+    text-transform: uppercase !important;
+}
+
+.PatientHome .pricing-plan {
+    border-bottom: 1px solid #e1f1ff !important;
+    padding: 25px !important;
+}
+
+.PatientHome .pricing-plan:last-child {
+    border-bottom: none !important;
+}
+
+@media (min-width: 900px) {
+    .PatientHome .pricing-plan {
+        border-bottom: none !important;
+        border-right: 1px solid #e1f1ff !important;
+        flex-basis: 100% !important;
+        padding: 25px 50px !important;
+    }
+
+    .PatientHome .pricing-plan:last-child {
+        border-right: none !important;
+    }
+}
+
+.PatientHome .pricing-img {
+    margin-bottom: 45px !important;
+    max-width: 100% !important;
+}
+
+.PatientHome .pricing-header {
+    color: #888 !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+}
+
+.PatientHome .pricing-features {
+    color: #016FF9 !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    margin: 50px 0 25px !important;
+}
+
+.PatientHome .pricing-features-item {
+    border-top: 1px solid #e1f1ff !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    padding: 15px 0 !important;
+}
+
+.PatientHome .pricing-features-item:last-child {
+    border-bottom: 1px solid #e1f1ff !important;
+}
+
+.PatientHome .pricing-price {
+    color: #016FF9 !important;
+    display: block !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+}
+
+.PatientHome .pricing-button {
+    border: 1px solid #9dd1ff !important;
+    border-radius: 10px !important;
+    color: #348EFE !important;
+    display: inline-block !important;
+    margin: 25px 0 !important;
+    padding: 15px 35px !important;
+    text-decoration: none !important;
+    transition: all 150ms ease-in-out !important;
+}
+
+.PatientHome .pricing-button:hover,
+.PatientHome .pricing-button:focus {
+    background-color: #e1f1ff !important;
+}
+
+.PatientHome .pricing-button.PatientHome .is-featured {
+    background-color: #48aaff !important;
+    color: #fff !important;
+}
+
+.PatientHome .pricing-button.PatientHome .is-featured:hover,
+.PatientHome .pricing-button.PatientHome .is-featured:active {
+    background-color: #269aff !important;
+}

@@ -3,7 +3,7 @@ body {
     font-family: 'Open Sans', Helvetica !important;
 }
 
-.Doctor form {
+.AdminAuth form {
     position: absolute;
     text-align: center;
     left: 50%;
@@ -12,14 +12,14 @@ body {
     padding: 10px;
 }
 
-.Doctor label {
+.AdminAuth label {
     display: block;
     letter-spacing: 4px;
     padding-top: 5px;
     text-align: center;
 }
 
-.Doctor label .label-text {
+.AdminAuth label .label-text {
     color: #9B9B9B;
     cursor: text;
     font-size: 17px;
@@ -29,7 +29,7 @@ body {
     transform: translateY(-34px);
 }
 
-.Doctor label input {
+.AdminAuth label input {
     background-color: transparent;
     border: 0;
     border-bottom: 2px solid #4A4A4A;
@@ -43,23 +43,23 @@ body {
     width: 200px;
 }
 
-.Doctor label input:focus {
+.AdminAuth label input:focus {
     max-width: 100%;
     width: 400px;
 }
 
-.Doctor label input:focus+.label-text {
+.AdminAuth label input:focus+.label-text {
     color: #ccc1c1;
     font-size: 13px;
     transform: translateY(-64px);
 }
 
-.Doctor label input:valid+.label-text {
+.AdminAuth label input:valid+.label-text {
     font-size: 13px;
     transform: translateY(-65px);
 }
 
-.Doctor button {
+.AdminAuth button {
     background-color: #333333;
     border: 2px solid white;
     border-radius: 27px;
@@ -75,21 +75,21 @@ body {
     transition: 0.2s all;
 }
 
-.Doctor button:hover {
+.AdminAuth button:hover {
     background-color: rgb(241, 241, 241);
     color: #333333;
     outline: 0;
 }
 
-.Doctor button:active {
+.AdminAuth button:active {
     transform: scale(0.95);
     box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
 }
 
-.Doctor .signu.DoctorNone {
+.AdminAuth .signu.AdminAuthNone {
     display: none;
 }
 
-.Doctor .signi.DoctorNone {
+.AdminAuth .signi.AdminAuthNone {
     display: none;
 }

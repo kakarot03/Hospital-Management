@@ -13,7 +13,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
     <div className={sidebarOpen ? 'sidebar_responsive' : ''} id="sidebar">
       <div className="sidebar__title">
         <div className="sidebar__img">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" style={{ marginTop: '2rem' }} />
           <h1 style={{ marginLeft: '7rem' }}> SHC</h1>
         </div>
         <i
@@ -76,7 +76,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
         </div>
         <div className="sidebar__logout">
           <i className="fa fa-power-off" />
-          <a href="#">Log out</a>
+          <a href="/adminAuth">Log out</a>
         </div>
       </div>
     </div>

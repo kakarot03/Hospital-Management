@@ -1,22 +1,22 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Doctor.css';
-import bg from '../../components/image/doctors.png';
-import DoctorRoute from '../../Api/DoctorRoute';
+import './AdminAuth.css';
 
-const Doctor = () => {
+const AdminAuth = () => {
   const navigate = useNavigate();
 
-  const [doctorList, setDoctorList] = useState('');
+  const [adminOrg, setAdminOrg] = useState('');
   const [inputId, setInputId] = useState('');
   const [inputPassword, setInputPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState(false);
 
-  const getDoctors = async () => {
+  const getAdmin = async () => {
     try {
-      const result = await DoctorRoute.get('/getAllDoctors');
-      const jsonData = await result.data.doctors;
-      setDoctorList(jsonData);
+      const result = await axios.get(
+        'http://localhost:5000/api/v1/general/adminAuth'
+      );
+      setAdminOrg(result.data.admin);
     } catch (err) {
       console.log(err);
     }
@@ -25,10 +25,8 @@ const Doctor = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const doctor = doctorList.find((doc) => doc.id === parseInt(inputId));
-
-    if (doctor) {
-      if (doctor.password === inputPassword) navigate('/doctorHome');
+    if (adminOrg) {
+      if (adminOrg.password === inputPassword) navigate('/admin');
       else setErrorMsg(true);
     } else {
       setErrorMsg(true);
@@ -36,12 +34,12 @@ const Doctor = () => {
   };
 
   useEffect(() => {
-    getDoctors();
+    getAdmin();
   }, []);
 
   return (
-    <div className="Doctor">
-      <img
+    <div className="AdminAuth">
+      {/* <img
         src={bg}
         style={{
           opacity: '0.08',
@@ -49,7 +47,7 @@ const Doctor = () => {
           marginLeft: '25rem',
           marginTop: '10rem',
         }}
-      />
+      /> */}
       <h2
         style={{
           position: 'absolute',
@@ -66,8 +64,6 @@ const Doctor = () => {
           background: 'white',
           padding: '10rem',
           borderRadius: '5rem',
-          opacity: '.8',
-          color: 'green',
         }}
       >
         <label>
@@ -76,7 +72,7 @@ const Doctor = () => {
             onChange={(e) => setInputId(e.target.value)}
             required
           />
-          <div className="label-text">Doctor Id</div>
+          <div className="label-text">Admin Id</div>
         </label>
         <label>
           <input
@@ -86,7 +82,7 @@ const Doctor = () => {
           />
           <div className="label-text">Password</div>
         </label>
-        {errorMsg && <h3 style={{ color: 'red' }}>Invalid Credentials!</h3>}
+        {errorMsg && <h3 style={{ color: 'red' }}>402! You're Unauthorized</h3>}
         <button onClick={handleFormSubmit} type="sumbit">
           Login
         </button>
@@ -95,4 +91,4 @@ const Doctor = () => {
   );
 };
 
-export default Doctor;
+export default AdminAuth;
