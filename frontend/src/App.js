@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Admin from './pages/Admin/Admin';
 import Doctor from './pages/Doctor/Doctor';
 import Patient from './pages/Patient/Patient';
+// import PatientHome from './pages/Patient/PatientHome';
 import Login from './pages/Login/Login';
 
 const App = () => {
