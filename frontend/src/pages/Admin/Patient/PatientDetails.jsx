@@ -12,6 +12,7 @@ const PatientDetails = () => {
     try {
       const result = await PatientRoute.get('/getAllPatients');
       const jsonData = await result.data.patients;
+      jsonData.sort((a, b) => a.id - b.id);
       setPatientList(jsonData);
     } catch (err) {
       console.log(err);

@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
 import logo from '../assets/logo.png';
 
@@ -24,7 +26,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
 
       <div className="sidebar__menu">
         <div className="sidebar__link active_menu_link">
-          <i className="fa fa-home" />
+          {/* <FontAwesomeIcon icon={faCoffee} /> */}
           <a style={{ fontSize: '16px' }} onClick={(e) => handleClick('')}>
             Dashboard
           </a>
@@ -35,7 +37,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <a onClick={(e) => handleClick('patient')}>Patient</a>
         </div>
         <div className="sidebar__link">
-          <i className="fa fa-building-o" />
+          <i class="fa-solid fa-user-doctor" />
           <a onClick={(e) => handleClick('doctor')}>Doctor</a>
         </div>
         <div className="sidebar__link">

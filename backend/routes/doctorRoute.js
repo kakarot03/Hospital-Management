@@ -9,9 +9,7 @@ router.get('/getAllDoctors', async (req, res) => {
     res.status(200).json({
       status: 'success',
       results: result.rows.length,
-      data: {
-        doctors: result.rows,
-      },
+      doctors: result.rows,
     });
   } catch (err) {
     res.status(500).json({

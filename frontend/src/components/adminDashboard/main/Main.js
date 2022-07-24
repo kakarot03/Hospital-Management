@@ -1,7 +1,27 @@
 import './Main.css';
 import hello from '../assets/hello.svg';
+import PatientRoute from '../../../Api/PatientRoute';
+import DoctorRoute from '../../../Api/DoctorRoute';
+import { useState, useEffect } from 'react';
 
 const Main = () => {
+  const [doctorCount, setDoctorCount] = useState(0);
+  const [patientCount, setPatientCount] = useState(0);
+  const handleCount = async () => {
+    try {
+      const patients = await PatientRoute.get(`/getAllPatients`);
+      const doctors = await DoctorRoute.get('/getAllDoctors');
+      setPatientCount(patients.data.patients.length);
+      setDoctorCount(doctors.data.doctors.length);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    handleCount();
+  }, []);
+
   return (
     <main>
       <div className="main__container">
@@ -26,7 +46,7 @@ const Main = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Patients</p>
-              <span className="font-bold text-title">178</span>
+              <span className="font-bold text-title">{patientCount}</span>
             </div>
           </div>
 
@@ -34,7 +54,7 @@ const Main = () => {
             <i className="fa fa-calendar fa-2x text-red" aria-hidden="true" />
             <div className="card_inner">
               <p className="text-primary-p">Number of Doctors</p>
-              <span className="font-bold text-title">67</span>
+              <span className="font-bold text-title">{doctorCount}</span>
             </div>
           </div>
 

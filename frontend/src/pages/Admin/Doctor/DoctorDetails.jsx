@@ -11,7 +11,8 @@ const DoctorDetails = () => {
     if (e && e.preventDefault) e.preventDefault();
     try {
       const result = await DoctorRoute.get('/getAllDoctors');
-      const jsonData = await result.data.data.doctors;
+      const jsonData = await result.data.doctors;
+      jsonData.sort((a, b) => a.id - b.id);
       setDoctorList(jsonData);
     } catch (err) {
       console.log(err);
@@ -39,7 +40,7 @@ const DoctorDetails = () => {
   return (
     <div className="DoctorDetails">
       <div className="containerDoctor">
-        <h2>Patient List</h2>
+        <h2>Doctor List</h2>
         <ul className="responsive-table">
           <li className="table-header">
             <div className="col col-1">Doctor Id</div>

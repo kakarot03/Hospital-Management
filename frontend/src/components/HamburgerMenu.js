@@ -142,11 +142,6 @@ function HamburgerMenu() {
             </ItemLink>
           </li>
           <li>
-            <ItemLink onClick={(e) => handleClick('/login')} to="/login">
-              Login
-            </ItemLink>
-          </li>
-          <li>
             <ItemLink onClick={(e) => handleClick('/doctor')} to="/doctor">
               Doctor
             </ItemLink>

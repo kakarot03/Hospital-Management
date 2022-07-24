@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PatientRoute from '../../Api/PatientRoute';
 import './Patient.css';
 
@@ -7,6 +8,7 @@ const Patient = () => {
   const [patientAge, setPatientAge] = useState('');
   const [patientMobile, setPatientMobile] = useState('');
   const [patientAddress, setPatientAddress] = useState('');
+  const navigate = useNavigate();
 
   const handleFormSubmission = async (e) => {
     e.preventDefault();
@@ -25,10 +27,14 @@ const Patient = () => {
     setPatientAge('');
     setPatientMobile('');
     setPatientAddress('');
+    navigate('/appointment');
   };
 
   return (
     <div className="Patient">
+      <h2 style={{ textAlign: 'center', marginTop: '10rem' }}>
+        Enter your Details to continue
+      </h2>
       <form className="details-form">
         <label>
           <input
