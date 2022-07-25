@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
 import DoctorRoute from '../../Api/DoctorRoute';
+import AppointmentModal from './Modal/AppointmentModal';
 import './BookAppointment.css';
 
 const BookAppointment = () => {
@@ -152,9 +153,9 @@ const BookAppointment = () => {
           <ul className="responsive-table">
             <li className="table-header">
               <div className="col col-1">Doctor Id</div>
-              <div className="col col-2">Doctor Name</div>
-              <div className="col col-3">Mobile</div>
-              <div className="col col-4">Select</div>
+              <div className="col col-2">Name</div>
+              <div className="col col-3">Age</div>
+              <div className="col col-4">Mobile</div>
             </li>
             {docOptions &&
               docOptions.map((doctor) => (
@@ -166,11 +167,16 @@ const BookAppointment = () => {
                     {doctor.name}
                   </div>
                   <div className="col col-3" data-label="Doctor Age">
-                    {doctor.mobile}
+                    {doctor.age}
                   </div>
                   <div className="col col-4" data-label="Doctor Mobile">
                     {doctor.mobile}
                   </div>
+                  <td className="bookModal">
+                    <div>
+                      <AppointmentModal doc={doctor} />
+                    </div>
+                  </td>
                 </li>
               ))}
           </ul>

@@ -1,0 +1,88 @@
+body .Modal {
+    background-color: #f2f2f2 !important;
+    font-family: 'Open Sans', Helvetica !important;
+}
+
+.Modal form {
+    position: absolute !important;
+    text-align: center !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    padding: 10px !important;
+}
+
+.Modal label {
+    display: block !important;
+    letter-spacing: 4px !important;
+    padding-top: 5px !important;
+    text-align: center !important;
+}
+
+.Modal label .label-text {
+    color: #9B9B9B !important;
+    cursor: text !important;
+    font-size: 17px !important;
+    line-height: 30px !important;
+    text-transform: uppercase !important;
+    transition: all 0.3s !important;
+    transform: translateY(-34px) !important;
+}
+
+.Modal label input {
+    background-color: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid #4A4A4A !important;
+    color: rgb(26, 22, 22) !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+    letter-spacing: -1px !important;
+    outline: 0 !important;
+    padding: 5px 20px !important;
+    text-align: center !important;
+    transition: all 0.3s !important;
+    width: 200px !important;
+}
+
+.Modal label input:focus {
+    max-width: 100% !important;
+    width: 400px !important;
+}
+
+.Modal label input:focus+.label-text {
+    color: #ccc1c1 !important;
+    font-size: 13px !important;
+    transform: translateY(-64px) !important;
+}
+
+.Modal label input:valid+.label-text {
+    font-size: 13px !important;
+    transform: translateY(-65px) !important;
+}
+
+.Modal button {
+    background-color: #333333 !important;
+    border: 2px solid white !important;
+    border-radius: 27px !important;
+    color: white !important;
+    font-size: 12px !important;
+    margin-top: 25px !important;
+    padding: 10px 20px !important;
+    text-transform: uppercase !important;
+    border-radius: 50px !important;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24) !important;
+    cursor: pointer !important;
+    outline: none !important;
+    transition: 0.2s all !important;
+}
+
+.Modal button:hover {
+    background-color: rgb(241, 241, 241) !important;
+    color: #333333 !important;
+    outline: 0 !important;
+}
+
+.Modal button:active {
+    transform: scale(0.95) !important;
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24) !important;
+}
