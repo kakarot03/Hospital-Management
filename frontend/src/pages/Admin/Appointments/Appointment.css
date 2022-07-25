@@ -1,0 +1,138 @@
+body {
+    font-family: 'lato', sans-serif;
+}
+
+.Appointment .containerAppointment {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Appointment h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.Appointment h2 small {
+    font-size: 0.5em;
+}
+
+.Appointment .responsive-table li {
+    border-radius: 5px;
+    padding: 25px 30px;
+    display: flex;
+    text-align: center;
+    /* justify-content: space-between; */
+    margin-bottom: 25px;
+}
+
+.Appointment .responsive-table .table-header {
+    background-color: #252626;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.Appointment .responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.Appointment .responsive-table .col-1 {
+    flex-basis: 13%;
+}
+
+.Appointment .responsive-table .col-2 {
+    flex-basis: 25%;
+}
+
+.Appointment .responsive-table .col-3 {
+    flex-basis: 13%;
+}
+
+.Appointment .responsive-table .col-4 {
+    flex-basis: 27%;
+}
+
+.Appointment button {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 600;
+    margin-top: -15px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+.Appointment button:hover {
+    background-color: rgb(241, 241, 241);
+    color: #333333;
+    outline: 0;
+}
+
+.Appointment button:active {
+    transform: scale(0.95);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.Appointment .updateBtn {
+    background-color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.Appointment .updateBtn:hover {
+    color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.Appointment .deleteBtn {
+    background-color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+.Appointment .deleteBtn:hover {
+    color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+@media all and (max-width: 767px) {
+    .Appointment .responsive-table .table-header {
+        display: none;
+    }
+
+    .Appointment .responsive-table li {
+        display: block;
+    }
+
+    .Appointment .responsive-table .col {
+        flex-basis: 100%;
+    }
+
+    .Appointment .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    .Appointment .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+    }
+}

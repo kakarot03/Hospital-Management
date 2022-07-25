@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Admin from './pages/Admin/Admin';
 import Doctor from './pages/Doctor/Doctor';
+import DoctorHome from './pages/Doctor/DotorHome';
 import Patient from './pages/Patient/Patient';
-import Login from './pages/Login/Login';
 import PatientHome from './pages/Patient/PatientHome';
 import AdminAuth from './pages/AdminAuth/AdminAuth';
 import BookAppointment from './pages/Appointment/BookAppointment';
@@ -19,10 +19,10 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/adminAuth" element={<AdminAuth />} />
           <Route path="/admin/*" element={<Admin />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/patient" element={<Patient />} />
           <Route path="/patientHome/:id" element={<PatientHome />} />
           <Route path="/doctor" element={<Doctor />} />
+          <Route path="/doctorHome/:id" element={<DoctorHome />} />
           <Route path="/bookAppointment/:id" element={<BookAppointment />} />
         </Routes>
       </Router>

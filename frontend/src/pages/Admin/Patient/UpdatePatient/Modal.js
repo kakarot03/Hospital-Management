@@ -70,11 +70,10 @@ export const Modal = ({ showModal, setShowModal, props }) => {
     try {
       const result = await PatientRoute.get(`/getPatient/${props}`);
       const patient = await result.data.patient[0];
-      // console.log(patient);
-      setPatientName(patient.name);
-      setPatientAge(patient.age);
-      setPatientMobile(patient.mobile);
-      setPatientAddress(patient.address);
+      patient && setPatientName(patient.name);
+      patient && setPatientAge(patient.age);
+      patient && setPatientMobile(patient.mobile);
+      patient && setPatientAddress(patient.address);
     } catch (err) {
       console.log(err);
     }

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
@@ -45,8 +46,12 @@ const CloseModalButton = styled.button`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal, props }) => {
+export const Modal = ({ showModal, setShowModal, props, docDate }) => {
   const modalRef = useRef();
+
+  console.log(docDate);
+  const [minDate, setMinDate] = useState(docDate);
+  const [date, setDate] = useState(docDate);
 
   const animation = useSpring({
     config: {
@@ -72,14 +77,47 @@ export const Modal = ({ showModal, setShowModal, props }) => {
     [setShowModal, showModal]
   );
 
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const currDate = new Date()
+      .toISOString()
+      .slice(0, 10)
+      .split('-')
+      .reverse()
+      .join('/');
+
+    const url = window.location.pathname;
+    const id = url.substring(url.lastIndexOf('/') + 1);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/v1/general/bookAppointment`,
+        {
+          patient_id: id,
+          doctor_id: props.id,
+          appointment_date: date,
+        }
+      );
+      window.location.reload();
+      console.log(response.data);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   useEffect(() => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
-  console.log(props);
+
+  useEffect(() => {
+    setDate(docDate);
+    console.log('change');
+  }, [docDate]);
+
   return (
-    <>
-      {showModal ? (
+    <div className="ModalAppointment">
+      {showModal && docDate ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
@@ -95,18 +133,27 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     gap: '3rem',
                   }}
                 >
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>
-                    Doctor Id : {props.id}
-                  </p>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>
-                    Doctor Name : {props.name}
-                  </p>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>
-                    Doctor Age : {props.age}
-                  </p>
-                  <p style={{ fontSize: '20px', fontWeight: '600' }}>
-                    Appointment Date : 21/3/2022
-                  </p>
+                  <form>
+                    <label>
+                      <input value={props.id} disabled />
+                      <div className="label-text">Doctor Id</div>
+                    </label>
+                    <label>
+                      <input value={props.name} disabled />
+                      <div className="label-text">Doctor Name</div>
+                    </label>
+                    <label>
+                      <input
+                        type="date"
+                        defaultValue={docDate}
+                        min={minDate}
+                        onChange={(e) => {
+                          setDate(e.target.value);
+                        }}
+                      />
+                      <div className="label-text">Appointment Date</div>
+                    </label>
+                  </form>
                   <button
                     type="sumbit"
                     style={{
@@ -114,6 +161,7 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                       marginLeft: '20rem',
                       marginTop: '2rem',
                     }}
+                    onClick={handleClick}
                   >
                     Book
                   </button>
@@ -127,6 +175,6 @@ export const Modal = ({ showModal, setShowModal, props }) => {
           </animated.div>
         </Background>
       ) : null}
-    </>
+    </div>
   );
 };

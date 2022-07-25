@@ -28,7 +28,8 @@ const Doctor = () => {
     const doctor = doctorList.find((doc) => doc.id === parseInt(inputId));
 
     if (doctor) {
-      if (doctor.password === inputPassword) navigate('/doctorHome');
+      if (doctor.password === inputPassword)
+        navigate(`/doctorHome/${doctor.id}`);
       else setErrorMsg(true);
     } else {
       setErrorMsg(true);

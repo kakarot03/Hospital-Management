@@ -39,7 +39,7 @@ router.get('/getPatient/:id', async (req, res) => {
 
     res.status(200).json({
       status: 'success',
-      patient: patient.rows,
+      patient: patient.rows[0],
     });
   } catch (err) {
     console.log(err);

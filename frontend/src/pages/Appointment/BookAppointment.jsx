@@ -116,10 +116,24 @@ const BookAppointment = () => {
     setDocOptions(doc);
   };
 
+  const getDate = async (id) => {
+    let res;
+    try {
+      res = await axios.get(
+        `http://localhost:5000/api/v1/general/getDate/${id}`
+      );
+    } catch (err) {
+      console.log(err.message);
+    }
+    // console.log(id, res.data.date.substring(0, 10));
+    return res.data.date.substring(0, 10);
+  };
+
   useEffect(() => {
     getSymptoms();
     getDepartment();
     getDoctors();
+    getDate(1156);
     console.log(symptoms);
   }, []);
 
@@ -174,7 +188,10 @@ const BookAppointment = () => {
                   </div>
                   <td className="bookModal">
                     <div>
-                      <AppointmentModal doc={doctor} />
+                      <AppointmentModal
+                        doc={doctor}
+                        date={getDate(doctor.id)}
+                      />
                     </div>
                   </td>
                 </li>

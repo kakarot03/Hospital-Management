@@ -6,6 +6,7 @@ import PatientDetails from './Patient/PatientDetails';
 import Navbar from '../../components/adminDashboard/navbar/Navbar';
 import Sidebar from '../../components/adminDashboard/sidebar/Sidebar';
 import DoctorDetails from './Doctor/DoctorDetails';
+import Appointment from './Appointments/Appointment';
 
 const Admin = () => {
   const [sidebarOpen, setsidebarOpen] = useState(false);
@@ -22,6 +23,7 @@ const Admin = () => {
         <Route path="/" element={<Main />} />
         <Route path="/patient" element={<PatientDetails />} />
         <Route path="/doctor" element={<DoctorDetails />} />
+        <Route path="/appointment" element={<Appointment />} />
       </Routes>
       <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
     </div>

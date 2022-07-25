@@ -13,7 +13,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const AppointmentModal = ({ doc }) => {
+const AppointmentModal = ({ doc, date }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal((prev) => !prev);
@@ -22,7 +22,12 @@ const AppointmentModal = ({ doc }) => {
   return (
     <>
       <Button onClick={openModal}>Book</Button>
-      <Modal showModal={showModal} setShowModal={setShowModal} props={doc} />
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        props={doc}
+        docDate={date}
+      />
     </>
   );
 };

@@ -4,16 +4,22 @@ import PatientRoute from '../../../Api/PatientRoute';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import { useState, useEffect } from 'react';
 import adminImg1 from '../assets/adminImg.jpg';
+import axios from 'axios';
 
 const Main = () => {
   const [doctorCount, setDoctorCount] = useState(0);
   const [patientCount, setPatientCount] = useState(0);
+  const [appointmentCount, setAppointmentCount] = useState(0);
   const handleCount = async () => {
     try {
       const patients = await PatientRoute.get(`/getAllPatients`);
       const doctors = await DoctorRoute.get('/getAllDoctors');
+      const appointments = await axios.get(
+        `http://localhost:5000/api/v1/appointment/getAllAppointments`
+      );
       setPatientCount(patients.data.patients.length);
       setDoctorCount(doctors.data.doctors.length);
+      setAppointmentCount(appointments.data.appointment.length);
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +72,7 @@ const Main = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Appointments</p>
-              <span className="font-bold text-title">20</span>
+              <span className="font-bold text-title">{appointmentCount}</span>
             </div>
           </div>
 
