@@ -3,6 +3,7 @@ import hello from '../assets/hello.svg';
 import PatientRoute from '../../../Api/PatientRoute';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import { useState, useEffect } from 'react';
+import adminImg1 from '../assets/adminImg.jpg';
 
 const Main = () => {
   const [doctorCount, setDoctorCount] = useState(0);
@@ -65,7 +66,7 @@ const Main = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Appointments</p>
-              <span className="font-bold text-title">240</span>
+              <span className="font-bold text-title">20</span>
             </div>
           </div>
 
@@ -76,7 +77,7 @@ const Main = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Users</p>
-              <span className="font-bold text-title">645</span>
+              <span className="font-bold text-title">67</span>
             </div>
           </div>
         </div>
@@ -87,10 +88,15 @@ const Main = () => {
           <div className="charts__left">
             <div className="charts__left__title">
               <div>
-                <h1>Daily Reports</h1>
-                <p>Cupertino, California, USA</p>
+                <img
+                  src={adminImg1}
+                  style={{
+                    height: '380px',
+                    width: '410px',
+                    marginLeft: '40px',
+                  }}
+                />
               </div>
-              <i className="fa fa-usd" aria-hidden="true" />
             </div>
           </div>
 
@@ -106,22 +112,22 @@ const Main = () => {
             <div className="charts__right__cards">
               <div className="card1">
                 <h1>Income</h1>
-                <p>$75,300</p>
+                <p>₹ 68,75,300</p>
               </div>
 
               <div className="card2">
-                <h1>Sales</h1>
-                <p>$124,200</p>
+                <h1>Medics</h1>
+                <p>₹ 124,200</p>
               </div>
 
               <div className="card3">
-                <h1>Users</h1>
-                <p>3900</p>
+                <h1>Operations</h1>
+                <p>3600</p>
               </div>
 
               <div className="card4">
-                <h1>Orders</h1>
-                <p>1881</p>
+                <h1>Hospital Cot</h1>
+                <p>183</p>
               </div>
             </div>
           </div>

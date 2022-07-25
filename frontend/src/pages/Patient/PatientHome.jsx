@@ -1,10 +1,22 @@
 import React from 'react';
 import './PatientHome.css';
+import { useNavigate } from 'react-router-dom';
 import PH1 from '../../components/image/PH1.jpg';
 import PH2 from '../../components/image/PH2.jpg';
 import PH3 from '../../components/image/PH3.jpg';
 
 const PatientHome = () => {
+  const navigate = useNavigate();
+
+  const bookAppointment = async (req, res) => {
+    const url = window.location.href;
+    const patientId = url
+      .substring(url.lastIndexOf('/') + 1)
+      .replaceAll('#', '');
+
+    navigate(`/bookAppointment/${patientId}`);
+  };
+
   return (
     <div className="PatientHome">
       <div className="backgroundPatientHome">
@@ -35,7 +47,11 @@ const PatientHome = () => {
                 </li>
               </ul> */}
               <span className="pricing-price">Book Appointment</span>
-              <a href="/" className="pricing-button is-featured">
+              <a
+                href="#"
+                onClick={bookAppointment}
+                className="pricing-button is-featured"
+              >
                 Click here
               </a>
             </div>

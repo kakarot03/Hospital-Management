@@ -59,11 +59,12 @@ const Patient = () => {
     setPatientAge('');
     setPatientMobile('');
     setPatientAddress('');
-    getPatients();
+    await getPatients();
     setPatientId(patientList[patientList.length - 1].id);
+    // console.log(patientList[patientList.length - 1].id, patientId);
     setTimeout(() => {
-      navigate(`/patient/${patientId}`);
-    }, 5000);
+      navigate(`/patientHome/${patientList[patientList.length - 1].id}`);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -83,9 +84,11 @@ const Patient = () => {
           Your Patient Id : {patientId}
         </h2>
       )}
-      <h2 style={{ textAlign: 'center', marginTop: '3rem' }}>
-        Enter your Details to continue
-      </h2>
+      {!patientId && (
+        <h2 style={{ textAlign: 'center', marginTop: '3rem' }}>
+          Enter your Details to continue
+        </h2>
+      )}
       <form className="details-form">
         <div className={classSignup1}>
           <label>

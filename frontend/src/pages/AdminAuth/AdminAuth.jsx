@@ -28,6 +28,7 @@ const AdminAuth = () => {
     if (adminOrg) {
       if (adminOrg.password === inputPassword) navigate('/admin');
       else setErrorMsg(true);
+      console.log(adminOrg.password + ' ' + inputPassword);
     } else {
       setErrorMsg(true);
     }

@@ -8,6 +8,7 @@ import Patient from './pages/Patient/Patient';
 import Login from './pages/Login/Login';
 import PatientHome from './pages/Patient/PatientHome';
 import AdminAuth from './pages/AdminAuth/AdminAuth';
+import BookAppointment from './pages/Appointment/BookAppointment';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/patient" element={<Patient />} />
           <Route path="/patientHome/:id" element={<PatientHome />} />
           <Route path="/doctor" element={<Doctor />} />
+          <Route path="/bookAppointment/:id" element={<BookAppointment />} />
         </Routes>
       </Router>
     </div>

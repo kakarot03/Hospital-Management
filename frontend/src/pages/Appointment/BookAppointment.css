@@ -1,0 +1,189 @@
+body {
+    font-family: 'lato', sans-serif;
+}
+
+.BookAppointment .patientForm {
+    margin-top: 15rem;
+    text-align: center;
+}
+
+.BookAppointment .containerBookAppointment {
+    /* max-width: 1000px; */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    padding: 10rem;
+}
+
+.BookAppointment .getList {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+}
+
+.BookAppointment h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.BookAppointment h2 small {
+    font-size: 0.5em;
+}
+
+.BookAppointment .responsive-table li {
+    border-radius: 5px;
+    padding: 25px 30px;
+    display: flex;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.BookAppointment .responsive-table .table-header {
+    background-color: #252626;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.BookAppointment .responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.BookAppointment .responsive-table .col-1 {
+    flex-basis: 15%;
+}
+
+.BookAppointment .responsive-table .col-2 {
+    flex-basis: 38%;
+}
+
+.BookAppointment .responsive-table .col-3 {
+    flex-basis: 27%;
+}
+
+.BookAppointment .responsive-table .col-4 {
+    flex-basis: 30%;
+}
+
+.BookAppointment button {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 600;
+    margin-top: -15px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+.BookAppointment button:hover {
+    background-color: rgb(241, 241, 241);
+    color: #333333;
+    outline: 0;
+}
+
+.BookAppointment button:active {
+    transform: scale(0.95);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.BookAppointment .updateBtn {
+    background-color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.BookAppointment .updateBtn:hover {
+    color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.BookAppointment .deleteBtn {
+    background-color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+.BookAppointment .deleteBtn:hover {
+    color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+@media all and (max-width: 767px) {
+    .BookAppointment .responsive-table .table-header {
+        display: none;
+    }
+
+    .BookAppointment .responsive-table li {
+        display: block;
+    }
+
+    .BookAppointment .responsive-table .col {
+        flex-basis: 100%;
+    }
+
+    .BookAppointment .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    .BookAppointment .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+    }
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 30%;
+    margin-left: 35%;
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.list-container {
+    display: flex;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+}

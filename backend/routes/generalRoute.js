@@ -14,4 +14,21 @@ router.get('/adminAuth', async (req, res) => {
   }
 });
 
+router.get('/getDepartments', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM department');
+
+    res.status(200).json({
+      status: 'success',
+      results: result.rows.length,
+      department: result.rows,
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'failed',
+      message: err.message,
+    });
+  }
+});
+
 module.exports = router;
