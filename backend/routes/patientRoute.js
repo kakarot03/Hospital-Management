@@ -66,6 +66,25 @@ router.post('/addPatient', async (req, res) => {
   }
 });
 
+router.post('/addPatientId', async (req, res) => {
+  try {
+    const { id, name, age, mobile, address } = req.body;
+    await db.query(
+      'INSERT INTO patient (id, name, age, mobile, address) VALUES ($1, $2, $3, $4, $5) returning *',
+      [id, name, age, mobile, address]
+    );
+    res.status(201).json({
+      status: 'success',
+      message: 'Patient added successfully',
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'failed',
+      message: err.message,
+    });
+  }
+});
+
 // Update Patient
 router.put('/updatePatient/:id', async (req, res) => {
   try {

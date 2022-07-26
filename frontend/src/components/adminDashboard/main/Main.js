@@ -71,7 +71,7 @@ const Main = () => {
               aria-hidden="true"
             />
             <div className="card_inner">
-              <p className="text-primary-p">Number of Appointments</p>
+              <p className="text-primary-p">Pending Appointments</p>
               <span className="font-bold text-title">{appointmentCount}</span>
             </div>
           </div>
@@ -83,7 +83,9 @@ const Main = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Users</p>
-              <span className="font-bold text-title">67</span>
+              <span className="font-bold text-title">
+                {patientCount + doctorCount - 27}
+              </span>
             </div>
           </div>
         </div>

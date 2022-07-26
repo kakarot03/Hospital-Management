@@ -10,14 +10,10 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
       </div>
       <div className="navbar__left">
         <a className="active_link" href="#">
-          Admin
+          Admin Panel
         </a>
       </div>
-      <div className="navbar__right">
-        <a href="#!">
-          <img width="30" src={avatar} alt="avatar" />
-        </a>
-      </div>
+      <div className="navbar__right" />
     </nav>
   );
 };

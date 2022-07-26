@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './DoctorDetails.css';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import UpdateDoctor from './UpdateDoctor/UpdateDoctor';
+import AddDoctor from './AddDoctor/AddDoctor';
 
 const DoctorDetails = () => {
   const [doctorList, setDoctorList] = useState([]);
@@ -47,6 +48,7 @@ const DoctorDetails = () => {
             <div className="col col-2">Doctor Name</div>
             <div className="col col-3">Mobile</div>
             <div className="col col-4">Dept Id</div>
+            <AddDoctor />
           </li>
           {doctorList &&
             doctorList.map((doctor) => (

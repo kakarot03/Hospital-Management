@@ -36,7 +36,7 @@ const Patient = () => {
   const getPatients = async () => {
     try {
       const res = await PatientRoute.get(`/getAllPatients`);
-      setPatientList(res.data.patients);
+      await setPatientList(res.data.patients);
     } catch (err) {
       console.log(err.message);
     }
@@ -61,7 +61,6 @@ const Patient = () => {
     setPatientAddress('');
     await getPatients();
     setPatientId(patientList[patientList.length - 1].id);
-    // console.log(patientList[patientList.length - 1].id, patientId);
     setTimeout(() => {
       navigate(`/patientHome/${patientList[patientList.length - 1].id}`);
     }, 3000);

@@ -26,7 +26,7 @@ router.get('/getDoctor/:id', async (req, res) => {
     ]);
     res.status(200).json({
       status: 'success',
-      doctor: doctor.rows,
+      doctor: doctor.rows[0],
     });
   } catch (err) {
     console.log(err);
@@ -40,6 +40,25 @@ router.post('/addDoctor', async (req, res) => {
     await db.query(
       'INSERT INTO doctor (name, age, mobile, department) VALUES ($1, $2, $3, $4) returning *',
       [name, age, mobile, department]
+    );
+    res.status(201).json({
+      status: 'success',
+      message: 'Doctor added successfully',
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'failed',
+      message: err.message,
+    });
+  }
+});
+
+router.post('/addDoctorId', async (req, res) => {
+  try {
+    const { id, name, age, mobile, password, department_id } = req.body;
+    await db.query(
+      'INSERT INTO doctor VALUES ($1, $2, $3, $4, $5, $6) returning *',
+      [id, name, age, mobile, password, department_id]
     );
     res.status(201).json({
       status: 'success',
@@ -86,6 +105,21 @@ router.delete('/deleteDoctor/:id', async (req, res) => {
       status: 'failed',
       message: err.message,
     });
+  }
+});
+
+router.get('/getAppointments/:id', async (req, res) => {
+  try {
+    const doctor = await db.query(
+      'select * from appointment where doctor_id = $1',
+      [req.params.id]
+    );
+    res.status(200).json({
+      status: 'success',
+      doctor: doctor.rows,
+    });
+  } catch (err) {
+    console.log(err);
   }
 });
 

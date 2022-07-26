@@ -16,7 +16,7 @@ const Background = styled.div`
 
 const ModalWrapper = styled.div`
   width: 800px;
-  height: 500px;
+  height: 600px;
   top: 15rem;
   left: 40rem;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
@@ -58,44 +58,49 @@ const CloseModalButton = styled.button`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal, props }) => {
+export const Modal = ({ showModal, setShowModal }) => {
   const modalRef = useRef();
+  const [doctorId, setDoctorId] = useState('');
   const [doctorName, setDoctorName] = useState('');
   const [doctorAge, setDoctorAge] = useState('');
   const [doctorMobile, setDoctorMobile] = useState('');
   const [doctorDeptId, setDoctorDeptId] = useState('');
+  const [doctorPassword, setDoctorPassword] = useState('');
+  const [error, setError] = useState(false);
 
-  const getDoctor = async (e) => {
-    if (e && e.preventDefault) e.preventDefault();
+  const addDoctor = async () => {
     try {
-      const result = await DoctorRoute.get(`/getDoctor/${props}`);
-      const doctor = await result.data.doctor;
-
-      doctor && setDoctorName(doctor.name);
-      doctor && setDoctorAge(doctor.age);
-      doctor && setDoctorMobile(doctor.mobile);
-      doctor && setDoctorDeptId(doctor.department_id);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleFormSubmission = async (e) => {
-    // e.preventDefault();
-    try {
-      const response = await DoctorRoute.put(`/updateDoctor/${props}`, {
+      const res = await DoctorRoute.post('/addDoctorId', {
+        id: doctorId,
         name: doctorName,
         age: doctorAge,
         mobile: doctorMobile,
+        password: doctorPassword,
+        department_id: doctorDeptId,
       });
-      console.log(response.data);
+      window.location.reload();
     } catch (err) {
       console.log(err.message);
     }
-    setDoctorName('');
-    setDoctorAge('');
-    setDoctorMobile('');
-    showModal = !showModal;
+  };
+
+  const handleSubmit = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    try {
+      const result = await DoctorRoute.get(`/getDoctor/${doctorId}`);
+      const doctor = await result.data.doctor;
+      if (doctor) {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 4000);
+      } else {
+        console.log(doctorId, doctorAge, doctorDeptId);
+        addDoctor();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const animation = useSpring({
@@ -123,36 +128,56 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   );
 
   useEffect(() => {
-    getDoctor();
-  }, []);
-
-  useEffect(() => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
   return (
     <>
-      {showModal && doctorName ? (
+      {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
               <ModalContent>
                 <div className="Modal">
+                  {error && (
+                    <h3
+                      style={{
+                        color: 'red',
+                        marginTop: '-30rem',
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        border: 'none',
+                      }}
+                    >
+                      Doctor Id already exists!
+                    </h3>
+                  )}
                   <form className="details-form">
                     <label>
+                      <label>
+                        <input
+                          type="text"
+                          onChange={(e) => setDoctorId(e.target.value)}
+                          required
+                        />
+                        <div className="label-text">Id</div>
+                      </label>
                       <input
                         type="text"
-                        defaultValue={doctorName}
                         onChange={(e) => setDoctorName(e.target.value)}
                         required
                       />
                       <div className="label-text">Name</div>
+                      <input
+                        type="password"
+                        onChange={(e) => setDoctorPassword(e.target.value)}
+                        required
+                      />
+                      <div className="label-text">Password</div>
                     </label>
                     <label>
                       <input
                         type="text"
-                        defaultValue={doctorAge}
                         onChange={(e) => setDoctorAge(e.target.value)}
                         required
                       />
@@ -161,18 +186,25 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        defaultValue={doctorMobile}
                         onChange={(e) => setDoctorMobile(e.target.value)}
                         required
                       />
                       <div className="label-text">Mobile</div>
                     </label>
                     <label>
-                      <input type="text" value={doctorDeptId} required />
+                      <input
+                        type="text"
+                        onChange={(e) => setDoctorDeptId(e.target.value)}
+                        required
+                      />
                       <div className="label-text">Department Id</div>
                     </label>
-                    <button type="sumbit" onClick={handleFormSubmission}>
-                      Update
+                    <button
+                      className="btn"
+                      type="sumbit"
+                      onClick={handleSubmit}
+                    >
+                      Add
                     </button>
                   </form>
                 </div>
