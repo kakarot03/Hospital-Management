@@ -5,6 +5,8 @@ import DoctorRoute from '../../Api/DoctorRoute';
 import './DoctorHome.css';
 
 let doctor = {},
+  patientCount = 0,
+  appointmentCount = 0,
   docId = -1;
 
 const DotorHome = () => {
@@ -65,26 +67,34 @@ const DotorHome = () => {
   return (
     <div className="DoctorHome">
       {doctor && (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '20rem',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          className="docDetails"
-        >
-          <>
-            <h2 style={{ marginRight: '3rem' }}>ID</h2>
-            <h2 style={{ marginRight: '3rem' }}>Name</h2>
-            <h2 style={{ marginRight: '3rem' }}>Department ID</h2>
-          </>
-          <>
-            <h2 style={{ marginRight: '3rem' }}>{doctor.id}</h2>
-            <h2 style={{ marginRight: '3rem' }}>{doctor.name}</h2>
-            <h2 style={{ marginRight: '3rem' }}>{doctor.department_id}</h2>
-          </>
+        <div className="docDetails">
+          <div
+            className="details"
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              height: '70px',
+              padding: '20px',
+            }}
+          >
+            <h2>ID</h2>
+            <h2>Name</h2>
+            <h2>Department ID</h2>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              height: '120px',
+              padding: '5px',
+            }}
+          >
+            <h2 style={{ marginLeft: '-3rem' }}>{doctor.id}</h2>
+            <h2 style={{ marginLeft: '-9rem' }}>{doctor.name}</h2>
+            <h2 style={{ marginRight: '5rem' }}>{doctor.department_id}</h2>
+          </div>
         </div>
       )}
       <div className="main__container">
@@ -96,7 +106,7 @@ const DotorHome = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Patients</p>
-              <span className="font-bold text-title">0</span>
+              <span className="font-bold text-title">{patientCount}</span>
             </div>
           </div>
 
@@ -104,7 +114,9 @@ const DotorHome = () => {
             <i className="fa fa-calendar fa-2x text-red" aria-hidden="true" />
             <div className="card_inner">
               <p className="text-primary-p">Number of Operations</p>
-              <span className="font-bold text-title">0</span>
+              <span className="font-bold text-title">
+                {(patientCount * appointmentCount) % 100}
+              </span>
             </div>
           </div>
 
@@ -115,7 +127,7 @@ const DotorHome = () => {
             />
             <div className="card_inner">
               <p className="text-primary-p">Number of Appointments</p>
-              <span className="font-bold text-title">0</span>
+              <span className="font-bold text-title">{appointmentCount}</span>
             </div>
           </div>
         </div>

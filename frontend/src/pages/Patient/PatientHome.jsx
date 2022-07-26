@@ -25,6 +25,19 @@ const PatientHome = () => {
       <div className="backgroundPatientHome">
         <div className="containerPatientHome">
           <div className="panel pricing-table">
+            <p
+              style={{
+                position: 'absolute',
+                fontSize: '24px',
+                letterSpacing: '3px',
+                fontWeight: 'bold',
+                color: 'white',
+                top: '-9rem',
+                left: '36rem',
+              }}
+            >
+              Patient ID : {patientId}
+            </p>
             <div className="pricing-plan">
               <img src={PH1} alt="" className="pricing-img" />
               {/* <h2 className="pricing-header">Personal</h2> */}

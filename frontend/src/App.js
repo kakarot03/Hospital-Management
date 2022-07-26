@@ -10,6 +10,7 @@ import PatientHome from './pages/Patient/PatientHome';
 import AdminAuth from './pages/AdminAuth/AdminAuth';
 import BookAppointment from './pages/Appointment/BookAppointment/BookAppointment';
 import FindDoctor from './pages/Appointment/FindDoctor/FindDoctor';
+import PreviousAppointment from './pages/Appointment/PrevAppointment/PreviousAppointment';
 
 const App = () => {
   return (
@@ -26,6 +27,10 @@ const App = () => {
           <Route path="/doctorHome/:id" element={<DoctorHome />} />
           <Route path="/bookAppointment/:id" element={<BookAppointment />} />
           <Route path="/findDoctor/:id" element={<FindDoctor />} />
+          <Route
+            path="/prevAppointment/:id"
+            element={<PreviousAppointment />}
+          />
         </Routes>
       </Router>
     </div>

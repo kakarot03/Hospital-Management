@@ -121,4 +121,19 @@ router.delete('/deletePatient/:id', async (req, res) => {
   }
 });
 
+router.get('/getAppointments/:id', async (req, res) => {
+  try {
+    const patient = await db.query(
+      'select * from appointment where patient_id = $1',
+      [req.params.id]
+    );
+    res.status(200).json({
+      status: 'success',
+      patient: patient.rows,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;

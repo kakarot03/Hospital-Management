@@ -47,11 +47,11 @@ body {
 }
 
 .PatientDetails .responsive-table .col-2 {
-    flex-basis: 25%;
+    flex-basis: 29%;
 }
 
 .PatientDetails .responsive-table .col-3 {
-    flex-basis: 13%;
+    flex-basis: 15%;
 }
 
 .PatientDetails .responsive-table .col-4 {

@@ -1,0 +1,189 @@
+body {
+    font-family: 'lato', sans-serif;
+}
+
+.PrevAppointment .patientForm {
+    margin-top: 15rem;
+    text-align: center;
+}
+
+.PrevAppointment .containerPrevAppointment {
+    /* max-width: 1000px; */
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5rem;
+    padding: 10rem;
+}
+
+.PrevAppointment .getList {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+}
+
+.PrevAppointment h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.PrevAppointment h2 small {
+    font-size: 0.5em;
+}
+
+.PrevAppointment .responsive-table li {
+    border-radius: 5px;
+    padding: 25px 30px;
+    display: flex;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.PrevAppointment .responsive-table .table-header {
+    background-color: #252626;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.PrevAppointment .responsive-table .table-row {
+    background-color: #fff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.PrevAppointment .responsive-table .col-1 {
+    flex-basis: 30%;
+}
+
+.PrevAppointment .responsive-table .col-2 {
+    flex-basis: 30%;
+}
+
+.PrevAppointment .responsive-table .col-3 {
+    flex-basis: 30%;
+}
+
+.PrevAppointment .responsive-table .col-4 {
+    flex-basis: 35%;
+}
+
+.PrevAppointment button {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 600;
+    margin-top: -15px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+.PrevAppointment button:hover {
+    background-color: rgb(241, 241, 241);
+    color: #333333;
+    outline: 0;
+}
+
+.PrevAppointment button:active {
+    transform: scale(0.95);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.PrevAppointment .updateBtn {
+    background-color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.PrevAppointment .updateBtn:hover {
+    color: #212180;
+    border: none;
+    margin-left: 1rem;
+}
+
+.PrevAppointment .deleteBtn {
+    background-color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+.PrevAppointment .deleteBtn:hover {
+    color: #b01a1a;
+    border: none;
+    margin-left: 5.5rem;
+}
+
+@media all and (max-width: 767px) {
+    .PrevAppointment .responsive-table .table-header {
+        display: none;
+    }
+
+    .PrevAppointment .responsive-table li {
+        display: block;
+    }
+
+    .PrevAppointment .responsive-table .col {
+        flex-basis: 100%;
+    }
+
+    .PrevAppointment .responsive-table .col {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    .PrevAppointment .responsive-table .col:before {
+        color: #6c7a89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+    }
+}
+
+.PrevAppointment input[type="text"],
+.PrevAppointment input[type="password"] {
+    width: 30%;
+    margin-left: 35%;
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.PrevAppointment .button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.PrevAppointment .login-form {
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.PrevAppointment .list-container {
+    display: flex;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.PrevAppointment .title {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.PrevAppointment .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+}

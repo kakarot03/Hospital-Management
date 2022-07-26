@@ -8,8 +8,7 @@ body {
 }
 
 .BookAppointment .containerBookAppointment {
-    /* max-width: 1000px; */
-    width: 100%;
+    width: 65%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5rem;
@@ -53,7 +52,7 @@ body {
 }
 
 .BookAppointment .responsive-table .col-1 {
-    flex-basis: 10%;
+    flex-basis: 15%;
 }
 
 .BookAppointment .responsive-table .col-2 {
@@ -65,7 +64,7 @@ body {
 }
 
 .BookAppointment .responsive-table .col-4 {
-    flex-basis: 35%;
+    flex-basis: 30%;
 }
 
 .BookAppointment button {

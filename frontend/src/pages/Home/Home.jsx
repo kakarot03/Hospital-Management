@@ -15,6 +15,9 @@ import doc6 from '../../components/image/doc-6.jpg';
 import pic1 from '../../components/image/pic-1.png';
 import pic2 from '../../components/image/pic-2.png';
 import pic3 from '../../components/image/pic-3.png';
+import image1 from '../../components/image/image1.jpg';
+import image2 from '../../components/image/image2.jpg';
+import image3 from '../../components/image/image3.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -119,8 +122,9 @@ const Home = () => {
             <i className="fas fa-notes-medical" />
             <h3>free checkups</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
+              One of the biggest and most vital benefits of getting an annual
+              health checkup done is, it helps you detect any underlying health
+              conditions early on.
             </p>
             <a href="#" className="btn">
               {' '}
@@ -132,8 +136,8 @@ const Home = () => {
             <i className="fas fa-ambulance" />
             <h3>24/7 ambulance</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
+              Ambulances provide emergency medical assistance during critical
+              moments. They help patients reach the hospital as soon as possible
             </p>
             <a href="#" className="btn">
               {' '}
@@ -145,8 +149,9 @@ const Home = () => {
             <i className="fas fa-user-md" />
             <h3>expert doctors</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
+              You may call them simply doctors. But most doctors have extra
+              expertise in one type of medicine or another. In fact, there are
+              several hundred medical specialties and subspecialties.
             </p>
             <a href="#" className="btn">
               {' '}
@@ -158,34 +163,9 @@ const Home = () => {
             <i className="fas fa-pills" />
             <h3>medicines</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
-            </p>
-            <a href="#" className="btn">
-              {' '}
-              learn more
-            </a>
-          </div>
-
-          <div className="box">
-            <i className="fas fa-procedures" />
-            <h3>bed facility</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
-            </p>
-            <a href="#" className="btn">
-              {' '}
-              learn more
-            </a>
-          </div>
-
-          <div className="box">
-            <i className="fas fa-heartbeat" />
-            <h3>total care</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad,
-              omnis.
+              The WHO Model Lists of Essential Medicines are updated every two
+              years by the Expert Committee on Selection and Use of Essential
+              Medicines.
             </p>
             <a href="#" className="btn">
               {' '}
@@ -218,9 +198,8 @@ const Home = () => {
               suffering by offering compassionate tertiary healthcare.
             </p>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
-              vero ipsam laborum porro voluptates voluptatibus a nihil
-              temporibus deserunt vel?
+              To be the Hospital of Choice in providing the highest Quality
+              health care services to all sectors of the society
             </p>
             <a href="#" className="btn">
               {' '}
@@ -239,8 +218,8 @@ const Home = () => {
         <div className="box-container">
           <div className="box">
             <img src={doc1} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Sudha</h3>
+            <span>Obstetrics and Gynaecology</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -251,8 +230,8 @@ const Home = () => {
 
           <div className="box">
             <img src={doc2} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Siva</h3>
+            <span>General Surgeon</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -263,8 +242,8 @@ const Home = () => {
 
           <div className="box">
             <img src={doc3} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Dharun</h3>
+            <span>Cardiologist</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -275,8 +254,8 @@ const Home = () => {
 
           <div className="box">
             <img src={doc4} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Chris</h3>
+            <span>Opthomologist</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -287,8 +266,8 @@ const Home = () => {
 
           <div className="box">
             <img src={doc5} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Guru</h3>
+            <span>Dermatologist</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -299,8 +278,8 @@ const Home = () => {
 
           <div className="box">
             <img src={doc6} alt="" />
-            <h3>john deo</h3>
-            <span>expert doctor</span>
+            <h3>Ajay</h3>
+            <span>Neurologist</span>
             <div className="share">
               <a href="#" className="fab fa-facebook-f" />
               <a href="#" className="fab fa-twitter" />
@@ -364,8 +343,8 @@ const Home = () => {
 
         <div className="box-container">
           <div className="box">
-            <img src={pic1} alt="" />
-            <h3>john deo</h3>
+            <img src={image1} alt="" />
+            <h3>Sanjay kumar</h3>
             <div className="stars">
               <i className="fas fa-star" />
               <i className="fas fa-star" />
@@ -374,16 +353,16 @@ const Home = () => {
               <i className="fas fa-star-half-alt" />
             </div>
             <p className="text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid
-              perspiciatis libero nobis rem numquam nesciunt alias sapiente
-              minus voluptatem, reiciendis consequuntur optio dolorem!
+              Well friendly nurses and doctor very care and supoortive
+              dr.sowmini very very energetic and give a motivation to me and my
+              family april 6th i was delivery all ambiance and environment was
+              good best IVF doctor also
             </p>
           </div>
 
           <div className="box">
-            <img src={pic2} alt="" />
-            <h3>john deo</h3>
+            <img src={image2} alt="" />
+            <h3>Pradeep</h3>
             <div className="stars">
               <i className="fas fa-star" />
               <i className="fas fa-star" />
@@ -391,17 +370,16 @@ const Home = () => {
               <i className="fas fa-star" />
               <i className="fas fa-star-half-alt" />
             </div>
-            <p className="text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid
-              perspiciatis libero nobis rem numquam nesciunt alias sapiente
-              minus voluptatem, reiciendis consequuntur optio dolorem!
+            <p className="text" style={{ marginTop: '3.5rem' }}>
+              Very good care from MICU, Neuro ICU. Senior doctors and all
+              staffs.They have saved my Daughter's Life, We are thankful to them
+              always. All are doing good jobs.
             </p>
           </div>
 
           <div className="box">
-            <img src={pic3} alt="" />
-            <h3>john deo</h3>
+            <img src={image3} alt="" />
+            <h3>Arun</h3>
             <div className="stars">
               <i className="fas fa-star" />
               <i className="fas fa-star" />
@@ -410,10 +388,11 @@ const Home = () => {
               <i className="fas fa-star-half-alt" />
             </div>
             <p className="text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid
-              perspiciatis libero nobis rem numquam nesciunt alias sapiente
-              minus voluptatem, reiciendis consequuntur optio dolorem!
+              I come from a family of doctors and I was suffering from morbid
+              obesity with co-morbidities like diabetes, hypertension, and sleep
+              apnoea. It was becoming increasingly difficult for me to
+              concentrate on my practice and continue my day today life. I’ve
+              been consulted…
             </p>
           </div>
         </div>
@@ -430,20 +409,11 @@ const Home = () => {
               <img src={blog1} alt="" />
             </div>
             <div className="content">
-              <div className="icon">
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-calendar" /> 1st may, 2021{' '}
-                </a>
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-user" /> by admin{' '}
-                </a>
-              </div>
-              <h3>blog title goes here</h3>
+              <h3>Critical Care Services</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Provident, eius.
+                The Critical Care Unit is manned by two full-time consultants
+                and supported by highly-trained nurses, physiotherapists and
+                nutritionists.
               </p>
               <a href="#" className="btn">
                 {' '}
@@ -457,20 +427,12 @@ const Home = () => {
               <img src={blog2} alt="" />
             </div>
             <div className="content">
-              <div className="icon">
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-calendar" /> 1st may, 2021{' '}
-                </a>
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-user" /> by admin{' '}
-                </a>
-              </div>
-              <h3>blog title goes here</h3>
+              <h3>Physiotherapy</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Provident, eius.
+                Our physiotherapy services offered to out-patients and extends
+                to inpatients as well, with your health as our foremost priority
+                we offer you a range of physiotherapy services to meet your
+                every need.
               </p>
               <a href="#" className="btn">
                 {' '}
@@ -484,7 +446,7 @@ const Home = () => {
               <img src={blog3} alt="" />
             </div>
             <div className="content">
-              <div className="icon">
+              {/* <div className="icon">
                 <a href="#">
                   {' '}
                   <i className="fas fa-calendar" /> 1st may, 2021{' '}
@@ -493,11 +455,12 @@ const Home = () => {
                   {' '}
                   <i className="fas fa-user" /> by admin{' '}
                 </a>
-              </div>
-              <h3>blog title goes here</h3>
+              </div> */}
+              <h3>Plastic Surgery</h3>
               <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Provident, eius.
+                A Holistic world class centre for Hand Surgery, Trauma
+                Reconstruction, Microsurgery, Maxillofacial Surgery, Breast
+                Surgery, Burns and Aesthetic Surgery
               </p>
               <a href="#" className="btn">
                 {' '}
@@ -528,17 +491,10 @@ const Home = () => {
               {' '}
               <i className="fas fa-chevron-right" /> doctors{' '}
             </a>
-            <a href="#">
-              {' '}
-              <i className="fas fa-chevron-right" /> book{' '}
-            </a>
+
             <a href="#">
               {' '}
               <i className="fas fa-chevron-right" /> review{' '}
-            </a>
-            <a href="#">
-              {' '}
-              <i className="fas fa-chevron-right" /> blogs{' '}
             </a>
           </div>
 
@@ -578,15 +534,15 @@ const Home = () => {
             </a>
             <a href="#">
               {' '}
-              <i className="fas fa-envelope" /> shaikhanas@gmail.com{' '}
+              <i className="fas fa-envelope" /> srihealthcare@gmail.com{' '}
             </a>
             <a href="#">
               {' '}
-              <i className="fas fa-envelope" /> anasbhai@gmail.com{' '}
+              <i className="fas fa-envelope" /> siva1701@gmail.com{' '}
             </a>
             <a href="#">
               {' '}
-              <i className="fas fa-map-marker-alt" /> mumbai, india - 400104{' '}
+              <i className="fas fa-map-marker-alt" /> madurai, india - 624003{' '}
             </a>
           </div>
 
@@ -595,10 +551,6 @@ const Home = () => {
             <a href="#">
               {' '}
               <i className="fab fa-facebook-f" /> facebook{' '}
-            </a>
-            <a href="#">
-              {' '}
-              <i className="fab fa-twitter" /> twitter{' '}
             </a>
             <a href="#">
               {' '}

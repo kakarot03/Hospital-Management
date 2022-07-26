@@ -38,9 +38,7 @@ const Appointment = () => {
 
   const getDoctor = async (id) => {
     try {
-      const doctor = await axios.get(
-        `http://localhost:5000/api/v1/appointment/getDoctor/${id}`
-      );
+      const doctor = await axios.get`http://localhost:5000/api/v1/appointm/ent/getDoctor/${id}`();
       const name = await JSON.stringify(doctor.data.doctor.name);
       array2.push(name.replaceAll('"', ''));
     } catch (err) {

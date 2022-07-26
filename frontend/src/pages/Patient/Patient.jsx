@@ -61,8 +61,9 @@ const Patient = () => {
     setPatientAddress('');
     await getPatients();
     setPatientId(patientList[patientList.length - 1].id);
+    const id = patientList[patientList.length - 1].id;
     setTimeout(() => {
-      navigate(`/patientHome/${patientList[patientList.length - 1].id}`);
+      navigate(`/patientHome/${id}`);
     }, 3000);
   };
 

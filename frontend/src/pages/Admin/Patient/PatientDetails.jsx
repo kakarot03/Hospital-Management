@@ -27,6 +27,7 @@ const PatientDetails = () => {
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
+      console.log(id);
       await PatientRoute.delete(`/deletePatient/${id}`);
       setPatientList(
         patientList.filter((patient) => {
@@ -66,14 +67,6 @@ const PatientDetails = () => {
               </div>
               <td>
                 <UpdatePatient patientId={patient.id} />
-              </td>
-              <td>
-                <button
-                  onClick={(e) => handleDelete(e, patient.id)}
-                  className="deleteBtn"
-                >
-                  Delete
-                </button>
               </td>
             </li>
           ))}
