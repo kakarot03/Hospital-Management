@@ -61,10 +61,11 @@ const Home = () => {
         </div>
 
         <div className="content">
-          <h3>stay safe, stay healthy</h3>
+          <h3>Leading the way in medical excellence</h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sed
-            autem vero? Magnam, est laboriosam!
+            Largest network of the world’s finest and brightest medical experts
+            who provide compassionate care using outstanding expertise and
+            advanced technology.
           </p>
           <a href="#contactForm" className="btn">
             {' '}
@@ -208,12 +209,13 @@ const Home = () => {
           </div>
 
           <div className="content">
-            <h3>we take care of your healthy life</h3>
+            <h3>
+              we take care of your
+              <br /> healthy life
+            </h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure
-              ducimus, quod ex cupiditate ullam in assumenda maiores et culpa
-              odit tempora ipsam qui, quisquam quis facere iste fuga, minus
-              nesciunt.
+              Treating patients as our family members, we save lives and reduce
+              suffering by offering compassionate tertiary healthcare.
             </p>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus

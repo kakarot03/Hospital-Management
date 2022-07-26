@@ -4,10 +4,11 @@ import axios from 'axios';
 import DoctorRoute from '../../Api/DoctorRoute';
 import './DoctorHome.css';
 
+let doctor = {},
+  docId = -1;
+
 const DotorHome = () => {
   const [appointmentList, setAppointmentList] = useState();
-  const [doctor, setDoctor] = useState();
-  const [docId, setDocId] = useState(-1);
 
   const getAppointment = async () => {
     try {
@@ -39,8 +40,7 @@ const DotorHome = () => {
   const getDoctor = async () => {
     try {
       const doc = await DoctorRoute.get(`/getDoctor/${docId}`);
-      console.log(doc.data.doctor);
-      setDoctor(doc.data.doctor);
+      doctor = await doc.data.doctor;
     } catch (err) {
       console.log(err.message);
     }
@@ -57,33 +57,38 @@ const DotorHome = () => {
 
   useEffect(() => {
     const url = window.location.pathname;
-    const id = url.substring(url.lastIndexOf('/') + 1);
-    setDocId(id);
+    docId = url.substring(url.lastIndexOf('/') + 1);
     getAppointment();
     getDoctor();
-  }, []);
+  }, [window.location.href]);
 
   return (
     <div className="DoctorHome">
       {doctor && (
         <div
           style={{
-            display: 'grid',
-            marginTop: '5rem',
-            gridTemplateColumns: '1fr 1fr',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '20rem',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
           className="docDetails"
         >
-          <h2>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ID&emsp;:&emsp; {docId}</h2>
-          <h2 style={{ marginRight: '20rem' }}>
-            &emsp; NAME&emsp;:&emsp; {doctor.name}
-          </h2>
-          <h2>DEPARTMENT&emsp;:&emsp; {doctor.department_id}</h2>
-          <h2 style={{ marginRight: '20rem' }}>NAME&emsp;:&emsp; abc</h2>
+          <>
+            <h2 style={{ marginRight: '3rem' }}>ID</h2>
+            <h2 style={{ marginRight: '3rem' }}>Name</h2>
+            <h2 style={{ marginRight: '3rem' }}>Department ID</h2>
+          </>
+          <>
+            <h2 style={{ marginRight: '3rem' }}>{doctor.id}</h2>
+            <h2 style={{ marginRight: '3rem' }}>{doctor.name}</h2>
+            <h2 style={{ marginRight: '3rem' }}>{doctor.department_id}</h2>
+          </>
         </div>
       )}
       <div className="main__container">
-        <div className="main__cards">
+        <div className="main__cards" style={{ marginLeft: '30rem' }}>
           <div className="card">
             <i
               className="fa fa-user-o fa-2x text-lightblue"
@@ -111,17 +116,6 @@ const DotorHome = () => {
             <div className="card_inner">
               <p className="text-primary-p">Number of Appointments</p>
               <span className="font-bold text-title">0</span>
-            </div>
-          </div>
-
-          <div className="card">
-            <i
-              className="fa fa-thumbs-up fa-2x text-green"
-              aria-hidden="true"
-            />
-            <div className="card_inner">
-              <p className="text-primary-p">Number of Users</p>
-              <span className="font-bold text-title">67</span>
             </div>
           </div>
         </div>

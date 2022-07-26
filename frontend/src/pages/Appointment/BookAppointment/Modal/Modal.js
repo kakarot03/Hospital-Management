@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import image from '../../../components/image/appointment.png';
+import image from '../../../../components/image/appointment.png';
 import './Modal.css';
 
 const Background = styled.div`
@@ -46,12 +47,31 @@ const CloseModalButton = styled.button`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal, props, docDate }) => {
+export const Modal = ({ showModal, setShowModal, props }) => {
   const modalRef = useRef();
+  const navigate = useNavigate();
 
-  console.log(docDate);
-  const [minDate, setMinDate] = useState(docDate);
-  const [date, setDate] = useState(docDate);
+  const [date, setDate] = useState();
+  const [docDate, setDocDate] = useState();
+  const [error, setError] = useState(true);
+  const currDate = new Date()
+    .toISOString()
+    .slice(0, 10)
+    .split('-')
+    .reverse()
+    .join('/');
+
+  const getDate = async () => {
+    let res;
+    try {
+      res = await axios.get(
+        `http://localhost:5000/api/v1/general/getDate/${props.id}`
+      );
+      setDocDate(res.data.date.substring(0, 10));
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const animation = useSpring({
     config: {
@@ -79,12 +99,6 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const currDate = new Date()
-      .toISOString()
-      .slice(0, 10)
-      .split('-')
-      .reverse()
-      .join('/');
 
     const url = window.location.pathname;
     const id = url.substring(url.lastIndexOf('/') + 1);
@@ -98,8 +112,15 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
           appointment_date: date,
         }
       );
-      window.location.reload();
-      console.log(response.data);
+      setError(false);
+      setTimeout(() => {
+        const url = window.location.href;
+        navigate(
+          `/patientHome/${url
+            .substring(url.lastIndexOf('t') + 2)
+            .replaceAll('#', '')}`
+        );
+      }, 3000);
     } catch (err) {
       console.log(err.message);
     }
@@ -111,9 +132,8 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
   }, [keyPress]);
 
   useEffect(() => {
-    setDate(docDate);
-    console.log('change');
-  }, [docDate]);
+    getDate();
+  }, [window.location.href]);
 
   return (
     <div className="ModalAppointment">
@@ -121,6 +141,37 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
+              {!error && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    textAlign: 'center',
+                  }}
+                >
+                  <p
+                    style={{
+                      fontSize: '18px',
+                      fontWeight: 'bold',
+                      marginTop: '-7rem',
+                      marginLeft: '17rem',
+                      color: '#1bcc53',
+                    }}
+                  >
+                    Your Appointment has been booked Successfully!
+                  </p>
+                  <p
+                    style={{
+                      color: 'grey',
+                      fontSize: '15px',
+                      fontWeight: '500',
+                      marginTop: '6rem',
+                      marginLeft: '17rem',
+                    }}
+                  >
+                    Redirecting to Home Page...
+                  </p>
+                </div>
+              )}
               <ModalContent>
                 <h3>Img</h3>
                 <div
@@ -145,8 +196,8 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
                     <label>
                       <input
                         type="date"
-                        defaultValue={docDate}
-                        min={minDate}
+                        defaultValue={currDate}
+                        min={docDate}
                         onChange={(e) => {
                           setDate(e.target.value);
                         }}
@@ -154,17 +205,17 @@ export const Modal = ({ showModal, setShowModal, props, docDate }) => {
                       <div className="label-text">Appointment Date</div>
                     </label>
                   </form>
-                  <button
-                    type="sumbit"
+                  <div
                     style={{
                       width: '20%',
                       marginLeft: '20rem',
-                      marginTop: '2rem',
+                      marginTop: '-5rem',
                     }}
-                    onClick={handleClick}
                   >
-                    Book
-                  </button>
+                    <button type="sumbit" onClick={handleClick}>
+                      Book
+                    </button>
+                  </div>
                 </div>
               </ModalContent>
               <CloseModalButton

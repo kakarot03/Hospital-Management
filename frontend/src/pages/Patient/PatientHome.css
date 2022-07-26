@@ -131,10 +131,12 @@ html .PatientHome {
 
 .PatientHome .pricing-button {
     border: 1px solid #9dd1ff !important;
+    cursor: pointer;
     border-radius: 10px !important;
+    background-color: #f6f8fb;
     color: #348EFE !important;
     display: inline-block !important;
-    margin: 25px 0 !important;
+    margin: 25px 0;
     padding: 15px 35px !important;
     text-decoration: none !important;
     transition: all 150ms ease-in-out !important;

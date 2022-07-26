@@ -4,18 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import PH1 from '../../components/image/PH1.jpg';
 import PH2 from '../../components/image/PH2.jpg';
 import PH3 from '../../components/image/PH3.jpg';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const PatientHome = () => {
   const navigate = useNavigate();
+  const [patientId, setPatientId] = useState(null);
 
-  const bookAppointment = async (req, res) => {
+  const setId = () => {
     const url = window.location.href;
-    const patientId = url
-      .substring(url.lastIndexOf('/') + 1)
-      .replaceAll('#', '');
-
-    navigate(`/bookAppointment/${patientId}`);
+    setPatientId(url.substring(url.lastIndexOf('e') + 2).replaceAll('#', ''));
   };
+
+  useEffect(() => {
+    setId();
+  }, []);
 
   return (
     <div className="PatientHome">
@@ -31,10 +34,18 @@ const PatientHome = () => {
                   Sleeps after 30 mins of inactivity
                 </li>
               </ul> */}
-              <span className="pricing-price">Find Doctor</span>
-              <a href="#/" className="pricing-button">
+              <span style={{ marginTop: '1rem' }} className="pricing-price">
+                Find Doctor
+              </span>
+              <button
+                style={{ marginTop: '5rem' }}
+                onClick={() => {
+                  navigate(`/findDoctor/${patientId}`);
+                }}
+                className="pricing-button"
+              >
                 Click here
-              </a>
+              </button>
             </div>
 
             <div className="pricing-plan">
@@ -47,13 +58,14 @@ const PatientHome = () => {
                 </li>
               </ul> */}
               <span className="pricing-price">Book Appointment</span>
-              <a
-                href="#"
-                onClick={bookAppointment}
+              <button
+                onClick={() => {
+                  navigate(`/bookAppointment/${patientId}`);
+                }}
                 className="pricing-button is-featured"
               >
                 Click here
-              </a>
+              </button>
             </div>
 
             <div className="pricing-plan">
@@ -66,9 +78,14 @@ const PatientHome = () => {
                 </li>
               </ul> */}
               <span className="pricing-price">Previous Appointment</span>
-              <a href="#/" className="pricing-button">
+              <button
+                className="pricing-button"
+                onClick={() => {
+                  patientId && navigate(`/prevAppointment/${patientId}`);
+                }}
+              >
                 Click here
-              </a>
+              </button>
             </div>
           </div>
         </div>

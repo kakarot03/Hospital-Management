@@ -4,14 +4,11 @@ import PatientRoute from '../../../Api/PatientRoute';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import './Appointment.css';
 
-let flag = false;
+var array1 = [],
+  array2 = [];
 
 const Appointment = () => {
   const [appointmentList, setAppointmentList] = useState([]);
-  const [patientList, setPatientList] = useState([]);
-  const [doctorList, setDoctorList] = useState([]);
-  const [array1, setArray1] = useState([]);
-  const [array2, setArray2] = useState([]);
 
   const getAppointments = async (e) => {
     if (e && e.preventDefault) e.preventDefault();
@@ -20,42 +17,45 @@ const Appointment = () => {
         'http://localhost:5000/api/v1/appointment/getAllAppointments'
       );
       const jsonData = await result.data.appointment;
-      jsonData.sort((a, b) => a.id - b.id);
-      await setAppointmentList(jsonData);
+      await jsonData.sort((a, b) => a.id - b.id);
+      setAppointmentList(jsonData);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const getPatients = async () => {
+  const getPatient = async (id) => {
     try {
-      const patient = await PatientRoute.get(`getAllPatients`);
-      await setPatientList(patient.data.patients);
+      const patient = await axios.get(
+        `http://localhost:5000/api/v1/appointment/getPatient/${id}`
+      );
+      const name = await JSON.stringify(patient.data.patient.name);
+      array1.push(name.replaceAll('"', ''));
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  const getDoctors = async () => {
+  const getDoctor = async (id) => {
     try {
-      const doctor = await DoctorRoute.get(`getAllDoctors`);
-      await setDoctorList(doctor.data.doctors);
+      const doctor = await axios.get(
+        `http://localhost:5000/api/v1/appointment/getDoctor/${id}`
+      );
+      const name = await JSON.stringify(doctor.data.doctor.name);
+      array2.push(name.replaceAll('"', ''));
     } catch (err) {
       console.log(err.message);
     }
-    flag = !flag;
   };
 
   useEffect(() => {
     getAppointments();
-    getPatients();
-    getDoctors();
-    for (let i = 0; i < patientList.length; i++) {
-      array1.push(patientList[i].name);
-    }
-    for (let i = 0; i < doctorList.length; i++) {
-      array2.push(doctorList[i].name);
-    }
+    appointmentList.forEach(async (app) => {
+      getPatient(app.id);
+    });
+    appointmentList.forEach(async (app) => {
+      getDoctor(app.id);
+    });
     return () => {
       console.log('This will be logged on unmount');
     };
@@ -98,7 +98,7 @@ const Appointment = () => {
             <div className="col col-4">Appointment Date</div>
           </li>
           {array1 &&
-            appointmentList.map((appointment, index) => (
+            appointmentList?.map((appointment, index) => (
               <li className="table-row" key={appointment.id}>
                 <div className="col col-1" data-label="Patient Id">
                   {appointment.id}

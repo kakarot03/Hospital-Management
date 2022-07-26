@@ -58,45 +58,46 @@ const CloseModalButton = styled.button`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal, props }) => {
+export const Modal = ({ showModal, setShowModal }) => {
   const modalRef = useRef();
+  const [patientId, setPatientId] = useState('');
   const [patientName, setPatientName] = useState('');
   const [patientAge, setPatientAge] = useState('');
   const [patientMobile, setPatientMobile] = useState('');
   const [patientAddress, setPatientAddress] = useState('');
+  const [error, setError] = useState(false);
 
-  const getPatient = async (e) => {
-    if (e && e.preventDefault) e.preventDefault();
+  const addpatient = async () => {
     try {
-      const result = await PatientRoute.get(`/getPatient/${props}`);
-      const patient = await result.data.patient;
-      patient && setPatientName(patient.name);
-      patient && setPatientAge(patient.age);
-      patient && setPatientMobile(patient.mobile);
-      patient && setPatientAddress(patient.address);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleFormSubmission = async (e) => {
-    // e.preventDefault();
-    try {
-      const response = await PatientRoute.put(`/updatePatient/${props}`, {
+      const res = await PatientRoute.post('/addpatientId', {
+        id: patientId,
         name: patientName,
         age: patientAge,
         mobile: patientMobile,
         address: patientAddress,
       });
-      console.log(response.data);
+      window.location.reload();
     } catch (err) {
       console.log(err.message);
     }
-    setPatientName('');
-    setPatientAge('');
-    setPatientMobile('');
-    setPatientAddress('');
-    showModal = !showModal;
+  };
+
+  const handleSubmit = async (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    try {
+      const result = await PatientRoute.get(`/getPatient/${patientId}`);
+      const patient = await result.data.patient;
+      if (patient) {
+        setError(true);
+        setTimeout(() => {
+          setError(false);
+        }, 4000);
+      } else {
+        addpatient();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const animation = useSpring({
@@ -124,27 +125,42 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   );
 
   useEffect(() => {
-    getPatient();
-  }, []);
-
-  useEffect(() => {
     document.addEventListener('keydown', keyPress);
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
   return (
     <>
-      {showModal && patientName ? (
+      {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
               <ModalContent>
                 <div className="Modal">
+                  {error && (
+                    <h3
+                      style={{
+                        color: 'red',
+                        marginTop: '-30rem',
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        border: 'none',
+                      }}
+                    >
+                      Patient Id already exists!
+                    </h3>
+                  )}
                   <form className="details-form">
                     <label>
+                      <label>
+                        <input
+                          type="text"
+                          onChange={(e) => setPatientId(e.target.value)}
+                          required
+                        />
+                        <div className="label-text">Id</div>
+                      </label>
                       <input
                         type="text"
-                        defaultValue={patientName}
                         onChange={(e) => setPatientName(e.target.value)}
                         required
                       />
@@ -153,7 +169,6 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        defaultValue={patientAge}
                         onChange={(e) => setPatientAge(e.target.value)}
                         required
                       />
@@ -162,7 +177,6 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        defaultValue={patientMobile}
                         onChange={(e) => setPatientMobile(e.target.value)}
                         required
                       />
@@ -171,14 +185,17 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                     <label>
                       <input
                         type="text"
-                        defaultValue={patientAddress}
                         onChange={(e) => setPatientAddress(e.target.value)}
                         required
                       />
                       <div className="label-text">Address</div>
                     </label>
-                    <button type="sumbit" onClick={handleFormSubmission}>
-                      Update
+                    <button
+                      className="btn"
+                      type="sumbit"
+                      onClick={handleSubmit}
+                    >
+                      Add
                     </button>
                   </form>
                 </div>

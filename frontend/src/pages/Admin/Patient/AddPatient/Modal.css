@@ -1,0 +1,87 @@
+body .Modal {
+    background-color: #f2f2f2 !important;
+    font-family: 'Open Sans', Helvetica !important;
+}
+
+.Modal form {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.Modal label {
+    display: block;
+    letter-spacing: 4px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.Modal label .label-text {
+    color: #9B9B9B;
+    cursor: text;
+    font-size: 17px;
+    line-height: 30px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    transform: translateY(-34px);
+}
+
+.Modal label input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    color: rgb(26, 22, 22);
+    font-size: 16px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 200px;
+}
+
+.Modal label input:focus {
+    max-width: 100%;
+    width: 400px;
+}
+
+.Modal label input:focus+.label-text {
+    color: #ccc1c1;
+    font-size: 13px;
+    transform: translateY(-64px);
+}
+
+.Modal label input:valid+.label-text {
+    font-size: 13px;
+    transform: translateY(-65px);
+}
+
+.Modal button {
+    background-color: #333333;
+    border: 2px solid white;
+    border-radius: 27px;
+    color: white;
+    font-size: 12px;
+    margin-top: 25px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+.Modal button:hover {
+    background-color: rgb(241, 241, 241);
+    color: #333333;
+    outline: 0;
+}
+
+.Modal button:active {
+    transform: scale(0.95);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}

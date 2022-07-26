@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './PatientDetails.css';
 import PatientRoute from '../../../Api/PatientRoute';
 import UpdatePatient from './UpdatePatient/UpdatePatient';
+import AddPatient from './AddPatient/AddPatent';
 
 const PatientDetails = () => {
   const [patientList, setPatientList] = useState([]);
@@ -47,6 +48,7 @@ const PatientDetails = () => {
             <div className="col col-2">Patient Name</div>
             <div className="col col-3">Patient Age</div>
             <div className="col col-4">Patient Mobile</div>
+            <AddPatient />
           </li>
           {patientList.map((patient) => (
             <li className="table-row" key={patient.id}>

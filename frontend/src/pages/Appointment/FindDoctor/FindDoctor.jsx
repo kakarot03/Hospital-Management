@@ -3,33 +3,34 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
-import DoctorRoute from '../../Api/DoctorRoute';
+import DoctorRoute from '../../../Api/DoctorRoute';
 import AppointmentModal from './Modal/AppointmentModal';
-import './BookAppointment.css';
+import './FindDoctor.css';
 
-const BookAppointment = () => {
-  const [doctorList, setDoctorList] = useState();
-  const [deptList, setDeptList] = useState();
+var symList = {},
+  symptoms = {},
+  deptList = {},
+  doctorList = {};
+
+const FindDoctor = () => {
   const [deptId, setDeptId] = useState();
-  const [symptoms, setSymptoms] = useState();
   const [list, setList] = useState();
   const [docOptions, setDocOptions] = useState();
-  const [deptOptions, setDeptOptions] = useState();
-  const [symList, setSymList] = useState();
 
   const getSymptoms = async () => {
     try {
       const res = await axios.get(
         `http://localhost:5000/api/v1/general/getSymptoms`
       );
-      setSymList(res.data.symptoms);
+      symList = res.data.symptoms;
+
       const li = [];
       const dummy = res.data.symptoms;
       for (var i = 0; i < dummy.length; i++) {
         var sym = dummy[i].symptoms;
         li.push(sym);
       }
-      setSymptoms(li);
+      symptoms = li;
     } catch (err) {
       console.log(err.message);
     }
@@ -49,7 +50,8 @@ const BookAppointment = () => {
       const res = await axios.get(
         `http://localhost:5000/api/v1/general/getDepartments`
       );
-      setDeptList(res.data.department);
+      deptList = res.data.department;
+      console.log(deptList);
     } catch (err) {
       console.log(err.message);
     }
@@ -59,13 +61,14 @@ const BookAppointment = () => {
     try {
       const result = await DoctorRoute.get('/getAllDoctors');
       const jsonData = await result.data.doctors;
-      setDoctorList(jsonData);
+      doctorList = jsonData;
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleChange = (arr) => {
+    console.log(deptList, arr);
     if (arr.length == 0) {
       setDocOptions([]);
     }
@@ -101,7 +104,6 @@ const BookAppointment = () => {
     const idArr = [];
 
     for (let j = 0; j < deptList.length; j++) {
-      console.log(deptList[j].name, arr.lebel);
       if (deptList[j].name == arr.label) idArr.push(deptList[j].id);
     }
 
@@ -116,29 +118,15 @@ const BookAppointment = () => {
     setDocOptions(doc);
   };
 
-  const getDate = async (id) => {
-    let res;
-    try {
-      res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDate/${id}`
-      );
-    } catch (err) {
-      console.log(err.message);
-    }
-    // console.log(id, res.data.date.substring(0, 10));
-    return res.data.date.substring(0, 10);
-  };
-
   useEffect(() => {
     getSymptoms();
     getDepartment();
     getDoctors();
-    getDate(1156);
     console.log(symptoms);
-  }, []);
+  }, [window.location.href]);
 
   return (
-    <div className="BookAppointment">
+    <div className="FindDoctor">
       <div className="getList">
         <div className="patientForm">
           <form>
@@ -163,13 +151,14 @@ const BookAppointment = () => {
             </div>
           </form>
         </div>
-        <div className="containerBookAppointment">
+        <div className="containerFindDoctor">
           <ul className="responsive-table">
             <li className="table-header">
               <div className="col col-1">Doctor Id</div>
               <div className="col col-2">Name</div>
               <div className="col col-3">Age</div>
               <div className="col col-4">Mobile</div>
+              <div className="col col-5">Availability</div>
             </li>
             {docOptions &&
               docOptions.map((doctor) => (
@@ -188,10 +177,7 @@ const BookAppointment = () => {
                   </div>
                   <td className="bookModal">
                     <div>
-                      <AppointmentModal
-                        doc={doctor}
-                        date={getDate(doctor.id)}
-                      />
+                      <AppointmentModal doc={doctor} />
                     </div>
                   </td>
                 </li>
@@ -203,4 +189,4 @@ const BookAppointment = () => {
   );
 };
 
-export default BookAppointment;
+export default FindDoctor;
