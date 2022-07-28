@@ -1,5 +1,6 @@
 #sidebar {
   background: #020509;
+  /* width: 90%; */
   grid-area: sidebar;
   overflow-y: auto;
   padding: 20px;
@@ -13,7 +14,6 @@
   align-items: center;
   color: #f3f4f6;
   margin-bottom: 30px;
-  /* color: #E85B6B; */
 }
 
 .sidebar__img {
@@ -106,6 +106,14 @@
   position: absolute;
 }
 
+#sidebar a {
+  font-size: 14px;
+  margin-left: 2rem;
+}
+
+#sidebar a:hover {
+  transform: scale(1.2);
+}
 
 
 @media only screen and (max-width: 978px) {

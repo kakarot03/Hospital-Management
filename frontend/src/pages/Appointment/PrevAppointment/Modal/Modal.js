@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
+import GeneralRoute from '../../../../Api/GeneralRoute';
 import image from '../../../../components/image/appointment.png';
 import './Modal.css';
 
@@ -61,9 +61,7 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   const getDate = async () => {
     let res;
     try {
-      res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDate/${props.id}`
-      );
+      res = await GeneralRoute.get(`/getDate/${props.id}`);
       setDocDate(res.data.date.substring(0, 10));
     } catch (err) {
       console.log(err.message);
@@ -101,14 +99,11 @@ export const Modal = ({ showModal, setShowModal, props }) => {
     const id = url.substring(url.lastIndexOf('/') + 1);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/general/bookAppointment`,
-        {
-          patient_id: id,
-          doctor_id: props.id,
-          appointment_date: date,
-        }
-      );
+      const response = await GeneralRoute.post(`/bookAppointment`, {
+        patient_id: id,
+        doctor_id: props.id,
+        appointment_date: date,
+      });
       window.location.reload();
       console.log(response.data);
     } catch (err) {

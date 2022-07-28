@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import PatientRoute from '../../../../Api/PatientRoute';
+import image from '../../../../components/image/blog-1.jpg';
 import styled from 'styled-components';
 import './Modal.css';
 
@@ -20,6 +21,7 @@ const ModalWrapper = styled.div`
   top: 15rem;
   left: 40rem;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  background-image: transparent;
   background: #fff;
   color: #000;
   display: grid;

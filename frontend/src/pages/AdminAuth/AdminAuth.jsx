@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import GeneralRoute from '../../Api/GeneralRoute';
 import './AdminAuth.css';
 
 const AdminAuth = () => {
@@ -13,9 +13,7 @@ const AdminAuth = () => {
 
   const getAdmin = async () => {
     try {
-      const result = await axios.get(
-        'http://localhost:5000/api/v1/general/adminAuth'
-      );
+      const result = await GeneralRoute.get('/adminAuthServer');
       setAdminOrg(result.data.admin);
     } catch (err) {
       console.log(err);
@@ -40,15 +38,6 @@ const AdminAuth = () => {
 
   return (
     <div className="AdminAuth">
-      {/* <img
-        src={bg}
-        style={{
-          opacity: '0.08',
-          width: '65%',
-          marginLeft: '25rem',
-          marginTop: '10rem',
-        }}
-      /> */}
       <h2
         style={{
           position: 'absolute',
@@ -62,7 +51,7 @@ const AdminAuth = () => {
       </h2>
       <form
         style={{
-          background: 'white',
+          background: '#f7f6f6',
           padding: '10rem',
           borderRadius: '5rem',
         }}

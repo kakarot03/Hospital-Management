@@ -541,15 +541,16 @@ body .Home {
     padding: 40px 0px;
     margin-top: -10rem;
     margin-right: 10rem;
+    flex-wrap: wrap;
     flex: 1 1 20rem;
 }
 
 .Home #contactForm input {
-    width: min-content;
+    width: 70%;
 }
 
 .Home #contactForm textarea {
-    width: 228px
+    width: 70%;
 }
 
 

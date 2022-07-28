@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import axios from 'axios';
+import AppointmentRoute from '../../Api/AppointmentRoute';
 import DoctorRoute from '../../Api/DoctorRoute';
 import './DoctorHome.css';
 
-let doctor = {},
-  patientCount = 0,
+let patientCount = 0,
   appointmentCount = 0,
   docId = -1;
 
 const DotorHome = () => {
-  const [appointmentList, setAppointmentList] = useState();
+  const [appointmentList, setAppointmentList] = useState([]);
+  const [doctor, setDoctor] = useState({});
 
   const getAppointment = async () => {
     try {
-      const appointment = await axios.get(
-        `http://localhost:5000/api/v1/doctor/getAppointments/${docId}`
-      );
+      const appointment = await DoctorRoute.get(`/getAppointments/${docId}`);
       await setAppointmentList(appointment.data.doctor);
     } catch (err) {
       console.log(err.message);
@@ -26,9 +24,7 @@ const DotorHome = () => {
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
-      await axios.delete(
-        `http://localhost:5000/api/v1/appointment/deleteAppointment/${id}`
-      );
+      await AppointmentRoute.delete(`/deleteAppointment/${id}`);
       setAppointmentList(
         appointmentList.filter((appointment) => {
           return appointment.id !== id;
@@ -42,10 +38,19 @@ const DotorHome = () => {
   const getDoctor = async () => {
     try {
       const doc = await DoctorRoute.get(`/getDoctor/${docId}`);
-      doctor = await doc.data.doctor;
+      await setDoctor(doc.data.doctor);
     } catch (err) {
       console.log(err.message);
     }
+  };
+
+  const getPatientCount = () => {
+    var lis = new Set();
+    for (let appointment of appointmentList) {
+      lis.add(appointment.patient_id);
+    }
+    console.log(lis);
+    return lis.size;
   };
 
   function reverse(str) {
@@ -63,6 +68,8 @@ const DotorHome = () => {
     getAppointment();
     getDoctor();
   }, [window.location.href]);
+
+  console.log(doctor);
 
   return (
     <div className="DoctorHome">
@@ -100,34 +107,27 @@ const DotorHome = () => {
       <div className="main__container">
         <div className="main__cards" style={{ marginLeft: '30rem' }}>
           <div className="card">
-            <i
-              className="fa fa-user-o fa-2x text-lightblue"
-              aria-hidden="true"
-            />
             <div className="card_inner">
               <p className="text-primary-p">Number of Patients</p>
-              <span className="font-bold text-title">{patientCount}</span>
+              <span className="font-bold text-title">{getPatientCount()}</span>
             </div>
           </div>
 
           <div className="card">
-            <i className="fa fa-calendar fa-2x text-red" aria-hidden="true" />
             <div className="card_inner">
               <p className="text-primary-p">Number of Operations</p>
               <span className="font-bold text-title">
-                {(patientCount * appointmentCount) % 100}
+                {getPatientCount() - 1 < 0 ? 0 : getPatientCount() - 1}
               </span>
             </div>
           </div>
 
           <div className="card">
-            <i
-              className="fa fa-video-camera fa-2x text-yellow"
-              aria-hidden="true"
-            />
             <div className="card_inner">
               <p className="text-primary-p">Number of Appointments</p>
-              <span className="font-bold text-title">{appointmentCount}</span>
+              <span className="font-bold text-title">
+                {appointmentList.length}
+              </span>
             </div>
           </div>
         </div>

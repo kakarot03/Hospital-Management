@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -6,6 +5,7 @@ import Select from 'react-select';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import AppointmentModal from './Modal/AppointmentModal';
 import './FindDoctor.css';
+import GeneralRoute from '../../../Api/GeneralRoute';
 
 var symList = {},
   symptoms = {},
@@ -19,9 +19,7 @@ const FindDoctor = () => {
 
   const getSymptoms = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/general/getSymptoms`
-      );
+      const res = await GeneralRoute.get(`/getSymptoms`);
       symList = res.data.symptoms;
 
       const li = [];
@@ -47,9 +45,7 @@ const FindDoctor = () => {
 
   const getDepartment = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDepartments`
-      );
+      const res = await GeneralRoute.get(`/getDepartments`);
       deptList = res.data.department;
       console.log(deptList);
     } catch (err) {

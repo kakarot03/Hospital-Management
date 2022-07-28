@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
-import image from '../../../../components/image/appointment.png';
+import GeneralRoute from '../../../../Api/GeneralRoute';
+import image from '../../../../components/image/Modal2.jpg';
 import './Modal.css';
 
 const Background = styled.div`
@@ -33,6 +33,7 @@ const ModalContent = styled.div`
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   text-align: center;
+  overflow: hidden;
 `;
 
 const CloseModalButton = styled.button`
@@ -61,9 +62,7 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   const getDate = async () => {
     let res;
     try {
-      res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDate/${props.id}`
-      );
+      res = await GeneralRoute.get(`/getDate/${props.id}`);
       setDocDate(res.data.date.substring(0, 10));
     } catch (err) {
       console.log(err.message);
@@ -101,14 +100,11 @@ export const Modal = ({ showModal, setShowModal, props }) => {
     const id = url.substring(url.lastIndexOf('/') + 1);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/general/bookAppointment`,
-        {
-          patient_id: id,
-          doctor_id: props.id,
-          appointment_date: date,
-        }
-      );
+      const response = await GeneralRoute.post(`/bookAppointment`, {
+        patient_id: id,
+        doctor_id: props.id,
+        appointment_date: date,
+      });
       window.location.reload();
       console.log(response.data);
     } catch (err) {
@@ -132,7 +128,18 @@ export const Modal = ({ showModal, setShowModal, props }) => {
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
               <ModalContent>
-                <h3>Img</h3>
+                <div>
+                  <img
+                    style={{
+                      marginLeft: '-4rem',
+                      marginTop: '2rem',
+                      width: '170%',
+                      height: '85%',
+                      overflow: 'hidden',
+                    }}
+                    src={image}
+                  />
+                </div>
                 <div
                   className="docDetails"
                   style={{

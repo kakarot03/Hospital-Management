@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import AppointmentRoute from '../../../Api/AppointmentRoute';
+import PatientRoute from '../../../Api/PatientRoute';
+import image from '../../../components/image/Bg1.jpg';
 import './PreviousAppointment.css';
 
 let patId = -1;
 
 const PreviousAppointment = () => {
   const [appointmentList, setAppointmentList] = useState();
+  const navigate = useNavigate();
 
   const getAppointment = async () => {
     try {
-      const appointment = await axios.get(
-        `http://localhost:5000/api/v1/patient/getAppointments/${patId}`
-      );
+      const appointment = await PatientRoute.get(`/getAppointments/${patId}`);
       await setAppointmentList(appointment.data.patient);
     } catch (err) {
       console.log(err.message);
@@ -21,9 +23,7 @@ const PreviousAppointment = () => {
   const handleDelete = async (e, id) => {
     e.stopPropagation();
     try {
-      await axios.delete(
-        `http://localhost:5000/api/v1/appointment/deleteAppointment/${id}`
-      );
+      await AppointmentRoute.delete(`/deleteAppointment/${id}`);
       setAppointmentList(
         appointmentList.filter((appointment) => {
           return appointment.id !== id;
@@ -63,7 +63,29 @@ const PreviousAppointment = () => {
               <div className="col col-3">Appointment Date</div>
             </li>
           ) : (
-            <h3>No Appointment</h3>
+            <div
+              className="NoAppointment"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                marginTop: '-13rem',
+                maxHeight: '80vh',
+              }}
+            >
+              <h2>No Appointment has been booked</h2>
+              <h3 style={{ textAlign: 'center' }}>
+                <span
+                  style={{ color: 'blue', cursor: 'pointer' }}
+                  onClick={(e) => {
+                    navigate(-1);
+                  }}
+                >
+                  Click here&ensp;
+                </span>
+                to Book one!
+              </h3>
+              <img src={image} />
+            </div>
           )}
           {appointmentList?.map((appointment) => (
             <li className="table-row" key={appointment.id}>

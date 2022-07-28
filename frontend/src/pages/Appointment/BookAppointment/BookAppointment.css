@@ -1,5 +1,7 @@
 body {
     font-family: 'lato', sans-serif;
+    background-image: url('../../../components/image/Bg2.jpg') !important;
+    background-size: 100% !important;
 }
 
 .BookAppointment .patientForm {
@@ -11,7 +13,6 @@ body {
     width: 65%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5rem;
     padding: 10rem;
 }
 
@@ -100,7 +101,7 @@ body {
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15rem;
+    margin-top: 20rem;
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
@@ -111,7 +112,7 @@ body {
     font-size: 14px;
     transition: all 0.2s;
     padding: 0 6px;
-    background-color: #160736;
+    background-color: #272530;
     border-radius: 10%;
     background-attachment: fixed;
     z-index: 0;

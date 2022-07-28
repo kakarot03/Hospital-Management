@@ -119,55 +119,74 @@ const Home = () => {
 
         <div className="box-container">
           <div className="box">
-            <i className="fas fa-notes-medical" />
+            <i
+              className="fas fa-notes-medical"
+              style={{ marginLeft: '10rem' }}
+            />
             <h3>free checkups</h3>
             <p>
               One of the biggest and most vital benefits of getting an annual
               health checkup done is, it helps you detect any underlying health
               conditions early on.
             </p>
-            <a href="#" className="btn">
+            <a
+              href="#"
+              className="btn"
+              style={{ marginLeft: '6rem', marginTop: '3rem' }}
+            >
               {' '}
               learn more
             </a>
           </div>
 
           <div className="box">
-            <i className="fas fa-ambulance" />
+            <i className="fas fa-ambulance" style={{ marginLeft: '10rem' }} />
             <h3>24/7 ambulance</h3>
             <p>
               Ambulances provide emergency medical assistance during critical
               moments. They help patients reach the hospital as soon as possible
             </p>
-            <a href="#" className="btn">
+            <a
+              href="#"
+              className="btn"
+              style={{ marginLeft: '6rem', marginTop: '3rem' }}
+            >
               {' '}
               learn more
             </a>
           </div>
 
           <div className="box">
-            <i className="fas fa-user-md" />
+            <i className="fas fa-user-md" style={{ marginLeft: '10rem' }} />
             <h3>expert doctors</h3>
             <p>
               You may call them simply doctors. But most doctors have extra
               expertise in one type of medicine or another. In fact, there are
-              several hundred medical specialties and subspecialties.
+              several hundred medical...
             </p>
-            <a href="#" className="btn">
+            <a
+              href="#"
+              className="btn"
+              style={{ marginLeft: '6rem', marginTop: '3rem' }}
+            >
               {' '}
               learn more
             </a>
           </div>
 
           <div className="box">
-            <i className="fas fa-pills" />
+            <i className="fas fa-pills" style={{ marginLeft: '10rem' }} />
             <h3>medicines</h3>
             <p>
               The WHO Model Lists of Essential Medicines are updated every two
               years by the Expert Committee on Selection and Use of Essential
               Medicines.
             </p>
-            <a href="#" className="btn">
+            <a
+              href="#"
+              className="btn"
+              style={{ marginLeft: '6rem', marginTop: '3rem' }}
+            >
               {' '}
               learn more
             </a>
@@ -409,13 +428,17 @@ const Home = () => {
               <img src={blog1} alt="" />
             </div>
             <div className="content">
-              <h3>Critical Care Services</h3>
+              <h3 style={{ textAlign: 'center' }}>Critical Care Services</h3>
               <p>
                 The Critical Care Unit is manned by two full-time consultants
                 and supported by highly-trained nurses, physiotherapists and
                 nutritionists.
               </p>
-              <a href="#" className="btn">
+              <a
+                href="#"
+                className="btn"
+                style={{ marginLeft: '12rem', marginTop: '1.5rem' }}
+              >
                 {' '}
                 learn more
               </a>
@@ -427,14 +450,17 @@ const Home = () => {
               <img src={blog2} alt="" />
             </div>
             <div className="content">
-              <h3>Physiotherapy</h3>
+              <h3 style={{ textAlign: 'center' }}>Physiotherapy</h3>
               <p>
                 Our physiotherapy services offered to out-patients and extends
                 to inpatients as well, with your health as our foremost priority
-                we offer you a range of physiotherapy services to meet your
-                every need.
+                we offer you a range of physiotherapy services to....
               </p>
-              <a href="#" className="btn">
+              <a
+                href="#"
+                className="btn"
+                style={{ marginLeft: '12rem', marginTop: '1.5rem' }}
+              >
                 {' '}
                 learn more
               </a>
@@ -446,23 +472,17 @@ const Home = () => {
               <img src={blog3} alt="" />
             </div>
             <div className="content">
-              {/* <div className="icon">
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-calendar" /> 1st may, 2021{' '}
-                </a>
-                <a href="#">
-                  {' '}
-                  <i className="fas fa-user" /> by admin{' '}
-                </a>
-              </div> */}
-              <h3>Plastic Surgery</h3>
+              <h3 style={{ textAlign: 'center' }}>Plastic Surgery</h3>
               <p>
                 A Holistic world class centre for Hand Surgery, Trauma
                 Reconstruction, Microsurgery, Maxillofacial Surgery, Breast
                 Surgery, Burns and Aesthetic Surgery
               </p>
-              <a href="#" className="btn">
+              <a
+                href="#"
+                className="btn"
+                style={{ marginLeft: '12rem', marginTop: '1.5rem' }}
+              >
                 {' '}
                 learn more
               </a>

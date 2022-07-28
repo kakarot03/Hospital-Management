@@ -51,7 +51,7 @@ router.get('/getPatient/:id', async (req, res) => {
 router.get('/getDoctor/:id', async (req, res) => {
   try {
     const doctor = await db.query(
-      'SELECT * FROM DOCTOR t1 INNER JOIN APPOINTMENT t2 ON t1.id = t2.doctor_id WHERE t2.id = $1',
+      'SELECT * FROM DOCTOR t1 INNER JOIN APPOINTMENT t2 ON t1.id = t2.doctor_id WHERE t1.id = $1',
       [req.params.id]
     );
     res.status(202).json({
@@ -64,6 +64,22 @@ router.get('/getDoctor/:id', async (req, res) => {
       status: 'failed',
       message: err.message,
     });
+  }
+});
+
+router.get('/getDocAndPat', async (req, res) => {
+  try {
+    const result = await db.query(
+      'SELECT t2.id as appointment_no, t1.name as doctor, t3.name as patient, t2.appointment_date as appointment_date FROM DOCTOR t1 INNER JOIN APPOINTMENT t2 ON t1.id = t2.doctor_id INNER JOIN patient t3 ON t2.patient_id = t3.id; '
+    );
+    res.status(200).json({
+      status: 'success',
+      resultCount: result.rowCount,
+      appointments: result.rows,
+    });
+    console.log(res);
+  } catch (error) {
+    console.log(error.message);
   }
 });
 

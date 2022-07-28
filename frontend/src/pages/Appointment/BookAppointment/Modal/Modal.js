@@ -1,10 +1,10 @@
-import axios from 'axios';
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import image from '../../../../components/image/appointment.png';
+import image from '../../../../components/image/Modal1.jpg';
 import './Modal.css';
+import GeneralRoute from '../../../../Api/GeneralRoute';
 
 const Background = styled.div`
   width: 102%;
@@ -22,11 +22,12 @@ const ModalWrapper = styled.div`
   top: 15rem;
   left: 40rem;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+  background-image: url(${image});
   background: #fff;
   color: #000;
   display: grid;
   position: relative;
-  z-index: 10;
+  /* z-index: 10; */
   border-radius: 10px;
 `;
 
@@ -64,9 +65,7 @@ export const Modal = ({ showModal, setShowModal, props }) => {
   const getDate = async () => {
     let res;
     try {
-      res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDate/${props.id}`
-      );
+      res = await GeneralRoute.get(`getDate/${props.id}`);
       setDocDate(res.data.date.substring(0, 10));
     } catch (err) {
       console.log(err.message);
@@ -104,14 +103,11 @@ export const Modal = ({ showModal, setShowModal, props }) => {
     const id = url.substring(url.lastIndexOf('/') + 1);
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/general/bookAppointment`,
-        {
-          patient_id: id,
-          doctor_id: props.id,
-          appointment_date: date,
-        }
-      );
+      const response = await GeneralRoute.post(`/bookAppointment`, {
+        patient_id: id,
+        doctor_id: props.id,
+        appointment_date: date,
+      });
       setError(false);
       setTimeout(() => {
         const url = window.location.href;
@@ -173,7 +169,17 @@ export const Modal = ({ showModal, setShowModal, props }) => {
                 </div>
               )}
               <ModalContent>
-                <h3>Img</h3>
+                <div>
+                  <img
+                    style={{
+                      marginLeft: '1.5rem',
+                      marginTop: '1rem',
+                      width: '130%',
+                      height: '90%',
+                    }}
+                    src={image}
+                  />
+                </div>
                 <div
                   className="docDetails"
                   style={{

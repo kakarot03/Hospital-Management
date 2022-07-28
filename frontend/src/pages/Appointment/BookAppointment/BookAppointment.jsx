@@ -1,24 +1,25 @@
-import axios from 'axios';
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import Select from 'react-select';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import GeneralRoute from '../../../Api/GeneralRoute';
 import DoctorRoute from '../../../Api/DoctorRoute';
 import AppointmentModal from './Modal/AppointmentModal';
 import './BookAppointment.css';
 
 var deptList = {},
-  doctorList = {};
+  doctorList = {},
+  id = -1;
 
 const BookAppointment = () => {
   const [doctor, setDoctor] = useState();
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const getDepartment = async () => {
+    const url = window.location.href;
+    id = url.substring(url.lastIndexOf('/') + 1);
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/general/getDepartments`
-      );
+      const res = await GeneralRoute.get(`/getDepartments`);
       deptList = res.data.department;
     } catch (err) {
       console.log(err.message);
@@ -52,6 +53,19 @@ const BookAppointment = () => {
 
   return (
     <div className="BookAppointment">
+      {!doctor && (
+        <p
+          style={{
+            position: 'fixed',
+            top: '6rem',
+            left: '55rem',
+            fontSize: '18px',
+            fontWeight: '600',
+          }}
+        >
+          Enter the doctor id and book your appointment
+        </p>
+      )}
       <div className="input-container">
         <input
           type="text"
@@ -74,7 +88,7 @@ const BookAppointment = () => {
             <div className="col col-3">Age</div>
             <div className="col col-4">Mobile</div>
           </li>
-          {doctor && (
+          {doctor ? (
             <li className="table-row" key={doctor.id}>
               <div className="col col-1" data-label="Doctor Id">
                 {doctor.id}
@@ -94,6 +108,27 @@ const BookAppointment = () => {
                 </div>
               </td>
             </li>
+          ) : (
+            <div>
+              <p
+                style={{
+                  marginTop: '6rem',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  textAlign: 'center',
+                }}
+              >
+                could'nt find your doctor?{' '}
+                <span
+                  style={{ color: 'blue', cursor: 'pointer' }}
+                  onClick={(e) => {
+                    navigate('/findDoctor/' + id);
+                  }}
+                >
+                  click here!
+                </span>
+              </p>
+            </div>
           )}
         </ul>
       </div>

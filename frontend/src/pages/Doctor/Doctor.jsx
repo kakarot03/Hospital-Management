@@ -64,7 +64,7 @@ const Doctor = () => {
       </h2>
       <form
         style={{
-          background: 'white',
+          background: '#f7f7f7',
           padding: '10rem',
           borderRadius: '5rem',
           opacity: '.8',
