@@ -9,12 +9,23 @@ let patId = -1;
 
 const PreviousAppointment = () => {
   const [appointmentList, setAppointmentList] = useState();
+  const [name, setName] = useState();
   const navigate = useNavigate();
 
   const getAppointment = async () => {
     try {
       const appointment = await PatientRoute.get(`/getAppointments/${patId}`);
-      await setAppointmentList(appointment.data.patient);
+      setAppointmentList(appointment.data.patient);
+      await getPatient();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const getPatient = async () => {
+    try {
+      const pat = await PatientRoute.get(`/getPatient/${patId}`);
+      setName(pat.data.patient.name);
     } catch (err) {
       console.log(err.message);
     }
@@ -46,11 +57,8 @@ const PreviousAppointment = () => {
   useEffect(() => {
     const url = window.location.pathname;
     patId = url.substring(url.lastIndexOf('/') + 1);
-    console.log(patId);
     getAppointment();
   }, [window.location.href]);
-
-  console.log(appointmentList);
 
   return (
     <div className="PrevAppointment">
@@ -93,13 +101,11 @@ const PreviousAppointment = () => {
                 {appointment.id}
               </div>
               <div className="col col-2" data-label="Patient Name">
-                {appointment.patient_id}
+                {name}
               </div>
-              <div className="col col-3" data-label="Patient Age">
+              <div className="col col-3" data-label="Date">
                 {reverse(appointment.appointment_date.substring(0, 10))}
               </div>
-              {/* {patientList[index]} */}
-              <td>{/* <UpdatePatient patientId={patient.id} /> */}</td>
               <td>
                 <button
                   onClick={(e) => handleDelete(e, appointment.id)}

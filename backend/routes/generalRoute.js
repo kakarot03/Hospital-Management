@@ -1,4 +1,9 @@
 const router = require('express').Router();
+const Vonage = require('@vonage/server-sdk');
+const vonage = new Vonage({
+  apiKey: 'b5892aa9',
+  apiSecret: 'W4gg4YRzNuJeBdRm',
+});
 const db = require('../db');
 
 router.get('/adminAuthServer', async (req, res) => {
@@ -85,6 +90,29 @@ router.get('/getDate/:id', async (req, res) => {
       message: err.message,
     });
   }
+});
+
+/* SMS Route */
+
+router.post('/sms', async (req, res) => {
+  vonage.message.sendSms(
+    'SHC',
+    req.body.to,
+    'Greetings from SHC.. Welcome aboard!',
+    (err, responseData) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (responseData.messages[0]['status'] === '0') {
+          console.log('Message sent successfully.');
+        } else {
+          console.log(
+            `Message failed with error: ${responseData.messages[0]['error-text']}`
+          );
+        }
+      }
+    }
+  );
 });
 
 module.exports = router;

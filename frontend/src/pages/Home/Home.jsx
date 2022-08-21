@@ -12,26 +12,10 @@ import doc3 from '../../components/image/doc-3.jpg';
 import doc4 from '../../components/image/doc-4.jpg';
 import doc5 from '../../components/image/doc-5.jpg';
 import doc6 from '../../components/image/doc-6.jpg';
-import pic1 from '../../components/image/pic-1.png';
-import pic2 from '../../components/image/pic-2.png';
-import pic3 from '../../components/image/pic-3.png';
 import image1 from '../../components/image/image1.jpg';
 import image2 from '../../components/image/image2.jpg';
 import image3 from '../../components/image/image3.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSquareCaretRight } from '@fortawesome/free-solid-svg-icons';
-import {
-  Animator,
-  batch,
-  Fade,
-  MoveOut,
-  ScrollContainer,
-  ScrollPage,
-  Sticky,
-} from 'react-scroll-motion';
 import emailjs from '@emailjs/browser';
-
-const element = <FontAwesomeIcon icon={faSquareCaretRight} size="xl" />;
 
 const Home = () => {
   const form = useRef();
